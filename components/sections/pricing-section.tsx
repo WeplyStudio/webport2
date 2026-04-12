@@ -11,25 +11,25 @@ interface PriceTicker {
 
 const pricingPlans: { name: string; type: string; description: string; prices: PriceTicker; features: string[] }[] = [
   {
-    name: "Design Master",
-    type: "01 / Visual Only",
-    description: "Focused on pure aesthetics. Perfect for those who have their own engineering team.",
+    name: "UI / UX Design",
+    type: "01 / Design Only",
+    description: "Complete UI/UX design system. Perfect for teams with their own development team.",
     prices: { monthly: 3500, yearly: 2800 },
-    features: ["UI/UX System Design", "Unlimited Revisions"],
+    features: ["Design Systems", "Unlimited Revisions", "Figma Files"],
   },
   {
-    name: "Full Architect",
-    type: "02 / Full Scale",
-    description: "Comprehensive solution. From design to the last line of code ready for release.",
+    name: "Web Development",
+    type: "02 / Full Stack",
+    description: "Complete web application from design to deployment. Ready-to-use production code.",
     prices: { monthly: 8000, yearly: 6400 },
-    features: ["UI/UX + Development", "Framer / Next.js"],
+    features: ["UI/UX + Development", "Next.js / React", "Deployment Included"],
   },
   {
-    name: "Direct Access",
-    type: "03 / Consulting",
-    description: "Direct access to strategic consulting and senior team guidance.",
-    prices: { monthly: 2500, yearly: 2000 },
-    features: ["Strategy Calls", "Technical Audit"],
+    name: "Custom Project",
+    type: "03 / Bespoke",
+    description: "Tailored solutions for your unique business needs. Let&apos;s discuss your vision.",
+    prices: { monthly: 5000, yearly: 4000 },
+    features: ["Custom Scope", "Strategy Included", "Full Support"],
   },
 ]
 

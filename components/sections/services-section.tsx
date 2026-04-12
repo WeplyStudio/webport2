@@ -57,7 +57,7 @@ export function ServicesSection() {
 
         {/* Stacking Cards Container */}
         <div className="relative flex flex-col gap-0 w-full" id="stack-container">
-          {/* Card 01: Engineering */}
+          {/* Card 01: Web Development */}
           <div className="stack-card sticky top-[15vh] w-full min-h-[70vh] rounded-[3.5rem] bg-[#080808] border border-white/5 p-8 md:p-20 flex flex-col justify-between overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.8)]">
             <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none"></div>
 
@@ -68,7 +68,7 @@ export function ServicesSection() {
                     Service 01
                   </span>
                   <h4 className="text-xs font-medium text-neutral-500 uppercase tracking-widest">
-                    Engineering
+                    Web Development
                   </h4>
                 </div>
                 <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-white backdrop-blur-xl">
@@ -84,27 +84,27 @@ export function ServicesSection() {
               </div>
               <h5 className="text-5xl md:text-[7vw] font-bold tracking-tighter max-w-4xl leading-[0.9] text-white">
                 Building <br />{" "}
-                <span className="serif-italic font-light text-neutral-400">Digital</span>{" "}
-                Architecture.
+                <span className="serif-italic font-light text-neutral-400">Modern</span>{" "}
+                Websites.
               </h5>
             </div>
 
             <div className="relative z-10 flex flex-col md:flex-row justify-between items-end gap-12">
               <p className="text-neutral-500 text-lg md:text-2xl max-w-xl leading-relaxed">
-                High-level performance optimization using modern, scalable, and secure stacks.
+                Fast, responsive, and scalable web applications built with the latest technologies.
               </p>
               <div className="flex flex-wrap gap-4">
                 <span className="px-6 py-3 bg-white/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-neutral-400 border border-white/5">
-                  Performance
+                  React / Next.js
                 </span>
                 <span className="px-6 py-3 bg-white/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-neutral-400 border border-white/5">
-                  Scalability
+                  Full Stack
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Card 02: Aesthetics */}
+          {/* Card 02: UI/UX Design */}
           <div className="stack-card sticky top-[15vh] w-full min-h-[70vh] rounded-[3.5rem] bg-white text-black p-8 md:p-20 flex flex-col justify-between overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.3)] mt-20">
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-16">
@@ -113,7 +113,7 @@ export function ServicesSection() {
                     Service 02
                   </span>
                   <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-widest">
-                    Design
+                    UI / UX Design
                   </h4>
                 </div>
                 <div className="w-14 h-14 rounded-full border border-black/10 flex items-center justify-center">
@@ -128,27 +128,27 @@ export function ServicesSection() {
                 </div>
               </div>
               <h5 className="text-5xl md:text-[7vw] font-bold tracking-tighter max-w-4xl leading-[0.9]">
-                Interfaces that <br />{" "}
-                <span className="serif-italic font-light italic text-blue-600">Resonate.</span>
+                Design that <br />{" "}
+                <span className="serif-italic font-light italic text-blue-600">Works.</span>
               </h5>
             </div>
 
             <div className="relative z-10 flex flex-col md:flex-row justify-between items-end gap-12">
               <p className="text-neutral-500 text-lg md:text-2xl max-w-xl leading-relaxed">
-                Emotional design that bridges human needs with digital functionality.
+                User-centered design that combines beautiful aesthetics with intuitive interactions.
               </p>
               <div className="flex flex-wrap gap-4">
                 <span className="px-6 py-3 bg-black/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-black border border-black/5">
-                  Visual Design
+                  UI Systems
                 </span>
                 <span className="px-6 py-3 bg-black/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-black border border-black/5">
-                  UX Strategy
+                  UX Research
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Card 03: Growth */}
+          {/* Card 03: Custom Projects */}
           <div className="stack-card sticky top-[15vh] w-full min-h-[70vh] rounded-[3.5rem] bg-[#0A0A0A] border border-white/5 p-8 md:p-20 flex flex-col justify-between overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.8)] mt-20">
             <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-purple-600/10 blur-[150px] rounded-full pointer-events-none"></div>
 
@@ -159,7 +159,7 @@ export function ServicesSection() {
                     Service 03
                   </span>
                   <h4 className="text-xs font-medium text-neutral-500 uppercase tracking-widest">
-                    Growth
+                    Custom Projects
                   </h4>
                 </div>
                 <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-white backdrop-blur-xl">
@@ -174,24 +174,24 @@ export function ServicesSection() {
                 </div>
               </div>
               <h5 className="text-5xl md:text-[7vw] font-bold tracking-tighter max-w-4xl leading-[0.9] text-white">
-                Strategic <br />{" "}
+                Tailored <br />{" "}
                 <span className="serif-italic font-light text-neutral-500 italic">
-                  Sustainable
+                  Solutions
                 </span>{" "}
-                Expansion.
+                for You.
               </h5>
             </div>
 
             <div className="relative z-10 flex flex-col md:flex-row justify-between items-end gap-12">
               <p className="text-neutral-500 text-lg md:text-2xl max-w-xl leading-relaxed">
-                Transforming data into design decisions that drive massive business growth.
+                Bespoke projects tailored to your specific needs and vision, from concept to launch.
               </p>
               <div className="flex flex-wrap gap-4">
                 <span className="px-6 py-3 bg-white/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-neutral-400 border border-white/5">
-                  SEO Audit
+                  Web Apps
                 </span>
                 <span className="px-6 py-3 bg-white/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-neutral-400 border border-white/5">
-                  Marketing
+                  Consulting
                 </span>
               </div>
             </div>
