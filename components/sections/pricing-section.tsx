@@ -214,7 +214,7 @@ export function PricingSection() {
                 </ul>
               </div>
 
-             <button onClick={() => window.location.href = '#contact'
+             <button onClick={() => window.location.href = '#contact'}
                 className={`w-full py-4 md:py-5 rounded-xl md:rounded-2xl text-[9px] font-bold uppercase tracking-[0.3em] transition-all ${
                   index === 1
                     ? "bg-black text-white hover:bg-blue-600 shadow-xl"
