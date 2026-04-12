@@ -109,7 +109,7 @@ export function ContactFormSection() {
         <div className="lg:col-span-5 flex flex-col justify-between reveal-on-scroll">
           <div>
             <h3 className="text-[10px] uppercase tracking-[0.8em] text-neutral-600 mb-8">
-              06 — Contact
+              07 — Contact
             </h3>
             <h2 className="text-6xl md:text-[8vw] font-bold tracking-tighter leading-[0.85] text-white uppercase mb-12">
               {"Let's"} <br />{" "}
@@ -130,7 +130,7 @@ export function ContactFormSection() {
                 href="mailto:jason@archive.com"
                 className="text-2xl font-medium text-white hover:text-blue-500 transition-colors"
               >
-                jason@archive.com
+                hello@itsjason.my.id
               </a>
             </div>
             <div>
