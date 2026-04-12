@@ -11,6 +11,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Jason | Digital Architect',
   description: 'Creating harmony between complex code and pristine interfaces.',
+  // Menambahkan Google AdSense account ID di sini
+  other: {
+    'google-adsense-account': 'ca-pub-9115632327270412',
+  },
 }
 
 export const viewport: Viewport = {
