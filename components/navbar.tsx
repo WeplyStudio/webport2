@@ -1,0 +1,34 @@
+"use client"
+
+interface NavbarProps {
+  onMenuToggle: () => void
+  isMenuOpen: boolean
+}
+
+export function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
+  return (
+    <nav className="fixed top-0 w-full z-[350] px-8 py-10 flex justify-between items-center mix-blend-difference">
+      <a href="#" className="text-xl font-bold tracking-tighter hover:opacity-50 transition">
+        Jasonn.doc™
+      </a>
+
+      <button
+        onClick={onMenuToggle}
+        className="group flex items-center gap-4 focus:outline-none"
+        style={{
+          opacity: isMenuOpen ? 0 : 1,
+          pointerEvents: isMenuOpen ? "none" : "auto",
+          transition: "opacity 0.5s ease",
+        }}
+      >
+        <span className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          Menu
+        </span>
+        <div className="flex flex-col gap-1.5">
+          <span className="w-6 h-0.5 bg-white transition-transform duration-500"></span>
+          <span className="w-6 h-0.5 bg-white transition-transform duration-500"></span>
+        </div>
+      </button>
+    </nav>
+  )
+}
