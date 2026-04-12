@@ -42,7 +42,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
         </div>
       </button>
 
-      <div className="w-full max-w-7xl mx-auto px-8 md:px-24 grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+      <div className="md:text-xl w-full max-w-7xl mx-auto px-8 md:px-24 grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
         {/* Main Navigation */}
         <div className="md:col-span-8 flex flex-col gap-2">
           {[
