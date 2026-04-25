@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import Script from 'next/script' // Import komponen Script
+import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 
 const inter = Inter({ 
@@ -12,9 +12,6 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Jason | Digital Architect',
   description: 'Creating harmony between complex code and pristine interfaces.',
-  other: {
-    'google-adsense-account': 'ca-pub-9115632327270412',
-  },
 }
 
 export const viewport: Viewport = {
@@ -27,18 +24,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
-      <head>
-        {/* Google AdSense Script */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9115632327270412"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-      </head>
-      <body className={`${inter.variable} font-sans antialiased`}>
-        {children}
+    <html lang="en" className="scroll-smooth dark" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <body className={`${inter.variable} font-sans antialiased bg-white dark:bg-[#000000] text-black dark:text-white transition-colors`}>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

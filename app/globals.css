@@ -142,9 +142,48 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-black text-white overflow-x-hidden;
+    @apply bg-white dark:bg-black text-black dark:text-white overflow-x-hidden transition-colors duration-300;
     -webkit-font-smoothing: antialiased;
   }
+}
+
+/* Light Mode Overrides */
+.light {
+  color-scheme: light;
+}
+
+.light #menu-overlay {
+  background: #ffffff;
+}
+
+.light .menu-link {
+  color: #000;
+}
+
+.light .secondary-text {
+  color: #94a3b8;
+}
+
+.light .glass-panel {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.light #main-content {
+  background-color: #ffffff;
+  box-shadow: 0 50px 100px rgba(0,0,0,0.1);
+}
+
+.light #sticky-footer {
+  background-color: #fafafa;
+}
+
+.light .explore-line {
+  background: linear-gradient(to bottom, transparent, #000);
+}
+
+.light .noise-bg {
+  opacity: 0.02;
 }
 
 /* Serif Italic Utility */
