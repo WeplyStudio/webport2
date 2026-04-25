@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth dark" data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased bg-white dark:bg-[#000000] text-black dark:text-white transition-colors`}>
+      <body className={`${inter.variable} font-sans antialiased bg-white dark:bg-black text-black dark:text-white transition-colors`}>
         <ThemeProvider>
           {children}
         </ThemeProvider>
