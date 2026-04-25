@@ -22,6 +22,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
   return (
     <div
       id="menu-overlay"
+      className="fixed inset-0 z-[400] bg-white dark:bg-black"
       style={{
         clipPath: isOpen ? "circle(150% at 95% 5%)" : "circle(0% at 95% 5%)",
         transition: "clip-path 1.2s cubic-bezier(0.7, 0, 0.3, 1)",
@@ -33,12 +34,12 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
         className="fixed top-10 right-8 z-[450] group flex items-center gap-4 focus:outline-none"
         style={{ opacity: isOpen ? 1 : 0, transition: "opacity 0.5s ease" }}
       >
-        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500 group-hover:text-white transition-colors">
+        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400 group-hover:text-black dark:group-hover:text-white transition-colors">
           Close
         </span>
         <div className="relative w-6 h-6 flex items-center justify-center">
-          <span className="absolute w-6 h-0.5 bg-white rotate-45"></span>
-          <span className="absolute w-6 h-0.5 bg-white -rotate-45"></span>
+          <span className="absolute w-6 h-0.5 bg-black dark:bg-white rotate-45"></span>
+          <span className="absolute w-6 h-0.5 bg-black dark:bg-white -rotate-45"></span>
         </div>
       </button>
 
@@ -84,11 +85,11 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
               transitionDelay: isOpen ? "0.8s" : "0s",
             }}
           >
-            <h4 className="text-[10px] uppercase tracking-[0.4em] text-slate-500 mb-4">
+            <h4 className="text-[10px] uppercase tracking-[0.4em] text-slate-500 dark:text-slate-400 mb-4">
               Location
             </h4>
-            <p className="text-sm font-medium">Jakarta, Indonesia</p>
-            <p className="text-[10px] text-slate-500 mt-1 tabular-nums">{time}</p>
+            <p className="text-sm font-medium text-black dark:text-white">Jakarta, Indonesia</p>
+            <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 tabular-nums">{time}</p>
           </div>
         </div>
       </div>

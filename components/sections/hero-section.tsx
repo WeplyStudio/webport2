@@ -21,7 +21,7 @@ export function HeroSection() {
         <div className="hero-title-wrap">
           <h2
             id="hero-sub"
-            className="text-xs md:text-sm font-medium text-slate-500 uppercase tracking-[0.5em] mb-12 translate-y-full"
+            className="text-xs md:text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-[0.5em] mb-12 translate-y-full"
           >
             Digital Experience Architect
           </h2>
@@ -43,7 +43,7 @@ export function HeroSection() {
           <div className="hero-title-wrap">
             <p
               id="hero-desc"
-              className="max-w-md text-slate-500 text-lg leading-relaxed translate-y-full"
+              className="max-w-md text-slate-500 dark:text-slate-400 text-lg leading-relaxed translate-y-full"
             >
               Creating harmony between complex code and pristine interfaces.
             </p>

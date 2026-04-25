@@ -148,38 +148,56 @@
 }
 
 /* Light Mode Overrides */
-.light {
+.light,
+.light * {
   color-scheme: light;
 }
 
-.light #menu-overlay {
-  background: #ffffff;
+html.light {
+  background-color: #ffffff !important;
 }
 
-.light .menu-link {
-  color: #000;
-}
-
-.light .secondary-text {
-  color: #94a3b8;
-}
-
-.light .glass-panel {
-  background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+html.light body {
+  background-color: #ffffff !important;
+  color: #000000 !important;
 }
 
 .light #main-content {
-  background-color: #ffffff;
-  box-shadow: 0 50px 100px rgba(0,0,0,0.1);
+  background-color: #ffffff !important;
+}
+
+.light #menu-overlay {
+  background: #ffffff !important;
 }
 
 .light #sticky-footer {
-  background-color: #fafafa;
+  background-color: #f8f9fa !important;
+  border-top: 1px solid #e5e7eb;
+}
+
+.light .menu-link,
+.light .menu-link .primary-text {
+  color: #000000 !important;
+}
+
+.light .menu-link .secondary-text {
+  color: #64748b !important;
+}
+
+.light .secondary-text {
+  color: #64748b !important;
+}
+
+.light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
+  color: #000000 !important;
+}
+
+.light p, .light span, .light a {
+  color: #374151 !important;
 }
 
 .light .explore-line {
-  background: linear-gradient(to bottom, transparent, #000);
+  background: linear-gradient(to bottom, transparent, #000000) !important;
 }
 
 .light .noise-bg {
@@ -232,6 +250,11 @@
   box-shadow: 0 50px 100px rgba(0,0,0,0.5);
 }
 
+html.light #main-content {
+  background-color: #ffffff !important;
+  box-shadow: 0 50px 100px rgba(0,0,0,0.08) !important;
+}
+
 #sticky-footer {
   position: fixed;
   bottom: 0;
@@ -243,6 +266,10 @@
   align-items: center;
   justify-content: center;
   background-color: #050505;
+}
+
+html.light #sticky-footer {
+  background-color: #f8f9fa !important;
 }
 
 /* Overlay Menu Premium */
@@ -257,6 +284,10 @@
   display: flex;
   align-items: center;
   clip-path: circle(0% at 95% 5%);
+}
+
+html.light #menu-overlay {
+  background: #ffffff !important;
 }
 
 .menu-link {
