@@ -33,12 +33,12 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
         className="fixed top-10 right-8 z-[450] group flex items-center gap-4 focus:outline-none"
         style={{ opacity: isOpen ? 1 : 0, transition: "opacity 0.5s ease" }}
       >
-        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500 group-hover:text-white transition-colors">
+        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground transition-colors">
           Close
         </span>
         <div className="relative w-6 h-6 flex items-center justify-center">
-          <span className="absolute w-6 h-0.5 bg-white rotate-45"></span>
-          <span className="absolute w-6 h-0.5 bg-white -rotate-45"></span>
+          <span className="absolute w-6 h-0.5 bg-foreground rotate-45"></span>
+          <span className="absolute w-6 h-0.5 bg-foreground -rotate-45"></span>
         </div>
       </button>
 

@@ -1,5 +1,7 @@
 "use client"
 
+import { ThemeToggle } from "@/components/theme-toggle"
+
 interface NavbarProps {
   onMenuToggle: () => void
   isMenuOpen: boolean
@@ -12,23 +14,27 @@ export function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
         Jasonn.doc™
       </a>
 
-      <button
-        onClick={onMenuToggle}
-        className="group flex items-center gap-1 md:gap-2 focus:outline-none"
-        style={{
-          opacity: isMenuOpen ? 0 : 1,
-          pointerEvents: isMenuOpen ? "none" : "auto",
-          transition: "opacity 0.5s ease",
-        }}
-      >
-        <span className="text-[6px] md:text-[8px] font-bold uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          Menu
-        </span>
-        <div className="flex flex-col gap-1.5">
-          <span className="w-6 h-0.5 bg-white transition-transform duration-500"></span>
-          <span className="w-6 h-0.5 bg-white transition-transform duration-500"></span>
-        </div>
-      </button>
+      <div className="flex items-center gap-4">
+        <ThemeToggle />
+        
+        <button
+          onClick={onMenuToggle}
+          className="group flex items-center gap-1 md:gap-2 focus:outline-none"
+          style={{
+            opacity: isMenuOpen ? 0 : 1,
+            pointerEvents: isMenuOpen ? "none" : "auto",
+            transition: "opacity 0.5s ease",
+          }}
+        >
+          <span className="text-[6px] md:text-[8px] font-bold uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            Menu
+          </span>
+          <div className="flex flex-col gap-1.5">
+            <span className="w-6 h-0.5 bg-current transition-transform duration-500"></span>
+            <span className="w-6 h-0.5 bg-current transition-transform duration-500"></span>
+          </div>
+        </button>
+      </div>
     </nav>
   )
 }
