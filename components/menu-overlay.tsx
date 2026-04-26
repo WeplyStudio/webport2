@@ -84,11 +84,11 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
               transitionDelay: isOpen ? "0.8s" : "0s",
             }}
           >
-            <h4 className="text-[10px] uppercase tracking-[0.4em] text-slate-500 mb-4">
+            <h4 className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground mb-4">
               Location
             </h4>
-            <p className="text-sm font-medium">Jakarta, Indonesia</p>
-            <p className="text-[10px] text-slate-500 mt-1 tabular-nums">{time}</p>
+            <p className="text-sm font-medium text-foreground">Jakarta, Indonesia</p>
+            <p className="text-[10px] text-muted-foreground mt-1 tabular-nums">{time}</p>
           </div>
         </div>
       </div>

@@ -99,7 +99,7 @@ export function ContactFormSection() {
   return (
     <section
       id="contact-form"
-      className="py-20 px-6 md:px-24 bg-black border-t border-white/5 relative overflow-hidden"
+      className="py-20 px-6 md:px-24 bg-background border-t border-foreground/5 relative overflow-hidden"
     >
       {/* Ambient Glow */}
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none"></div>
@@ -111,13 +111,13 @@ export function ContactFormSection() {
             <h3 className="text-[10px] uppercase tracking-[0.8em] text-neutral-600 mb-8">
               07 — Contact
             </h3>
-            <h2 className="text-6xl md:text-[8vw] font-bold tracking-tighter leading-[0.85] text-white uppercase mb-12">
+            <h2 className="text-6xl md:text-[8vw] font-bold tracking-tighter leading-[0.85] text-foreground uppercase mb-12">
               {"Let's"} <br />{" "}
-              <span className="serif-italic font-light text-neutral-500 italic lowercase">
+              <span className="serif-italic font-light text-muted-foreground italic lowercase">
                 talk.
               </span>
             </h2>
-            <p className="text-neutral-500 text-lg md:text-xl leading-relaxed max-w-sm mb-16">
+            <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-sm mb-16">
               Have a crazy idea or ambitious project? Let&apos;s discuss how I can help you bring it to
               life.
             </p>
@@ -128,7 +128,7 @@ export function ContactFormSection() {
               <h4 className="text-[10px] uppercase tracking-[0.4em] text-neutral-700 mb-4">Email</h4>
               <a
                 href="mailto:jason@archive.com"
-                className="text-2xl font-medium text-white hover:text-blue-500 transition-colors"
+                className="text-2xl font-medium text-foreground hover:text-blue-500 transition-colors"
               >
                 hello@itsjason.my.id
               </a>
@@ -151,8 +151,8 @@ export function ContactFormSection() {
             <div className="h-full flex items-center justify-center">
               <div className="text-center">
                 <div className="text-6xl mb-6">✓</div>
-                <h3 className="text-3xl font-bold text-white mb-4">Message Sent!</h3>
-                <p className="text-neutral-500 mb-8">
+                <h3 className="text-3xl font-bold text-foreground mb-4">Message Sent!</h3>
+                <p className="text-muted-foreground mb-8">
                   Thank you for reaching out. I&apos;ll get back to you soon.
                 </p>
                 <button
@@ -173,7 +173,7 @@ export function ContactFormSection() {
 
               {/* Name */}
               <div className="group relative">
-                <label className="text-[10px] uppercase tracking-[0.4em] text-neutral-600 group-focus-within:text-blue-500 transition-colors duration-500">
+                <label className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground group-focus-within:text-blue-500 transition-colors duration-500">
                   What&apos;s your name?
                 </label>
                 <input
@@ -182,14 +182,14 @@ export function ContactFormSection() {
                   onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                   placeholder="Jason Doe *"
                   required
-                  className="w-full bg-transparent border-b border-white/10 py-6 text-2xl md:text-3xl font-medium text-white placeholder:text-neutral-800 focus:outline-none focus:border-blue-600 transition-colors duration-500"
+                  className="w-full bg-transparent border-b border-foreground/10 py-6 text-2xl md:text-3xl font-medium text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-blue-600 transition-colors duration-500"
                 />
                 <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-blue-600 group-focus-within:w-full transition-all duration-700"></div>
               </div>
 
               {/* Email */}
               <div className="group relative">
-                <label className="text-[10px] uppercase tracking-[0.4em] text-neutral-600 group-focus-within:text-blue-500 transition-colors duration-500">
+                <label className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground group-focus-within:text-blue-500 transition-colors duration-500">
                   Your email address?
                 </label>
                 <input
@@ -198,14 +198,14 @@ export function ContactFormSection() {
                   onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
                   placeholder="jason@example.com *"
                   required
-                  className="w-full bg-transparent border-b border-white/10 py-6 text-2xl md:text-3xl font-medium text-white placeholder:text-neutral-800 focus:outline-none focus:border-blue-600 transition-colors duration-500"
+                  className="w-full bg-transparent border-b border-foreground/10 py-6 text-2xl md:text-3xl font-medium text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-blue-600 transition-colors duration-500"
                 />
                 <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-blue-600 group-focus-within:w-full transition-all duration-700"></div>
               </div>
 
               {/* Service Type */}
               <div className="group relative">
-                <label className="text-[10px] uppercase tracking-[0.4em] text-neutral-600 group-focus-within:text-blue-500 transition-colors duration-500">
+                <label className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground group-focus-within:text-blue-500 transition-colors duration-500">
                   What service do you need?
                 </label>
                 <div className="flex flex-wrap gap-4 mt-8">
@@ -217,7 +217,7 @@ export function ContactFormSection() {
                       className={`px-6 py-3 rounded-full border text-[10px] font-bold uppercase tracking-widest transition-all ${
                         formData.services.includes(service)
                           ? "bg-blue-600 text-white border-blue-600"
-                          : "border-white/10 text-neutral-500 hover:border-white/30"
+                          : "border-foreground/10 text-muted-foreground hover:border-foreground/30"
                       }`}
                     >
                       {service}
@@ -237,7 +237,7 @@ export function ContactFormSection() {
                   placeholder="Hi Jason, I want to build..."
                   rows={4}
                   required
-                  className="w-full bg-transparent border-b border-white/10 py-6 text-2xl md:text-3xl font-medium text-white placeholder:text-neutral-800 focus:outline-none focus:border-blue-600 transition-colors duration-500 resize-none"
+                  className="w-full bg-transparent border-b border-foreground/10 py-6 text-2xl md:text-3xl font-medium text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-blue-600 transition-colors duration-500 resize-none"
                 ></textarea>
                 <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-blue-600 group-focus-within:w-full transition-all duration-700"></div>
               </div>
@@ -248,7 +248,7 @@ export function ContactFormSection() {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="bg-white text-black px-16 py-8 rounded-full font-bold text-xs uppercase tracking-[0.4em] hover:bg-blue-600 hover:text-white disabled:opacity-50 transition-all duration-500 active:scale-95 shadow-2xl"
+                    className="bg-foreground text-background px-16 py-8 rounded-full font-bold text-xs uppercase tracking-[0.4em] hover:bg-blue-600 hover:text-white disabled:opacity-50 transition-all duration-500 active:scale-95 shadow-2xl"
                   >
                     {status === "loading" ? "Sending..." : "Send Message"}
                   </button>

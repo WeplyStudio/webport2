@@ -70,10 +70,10 @@ export function CTASection() {
   }, [])
 
   return (
-    <section id="contact" className="py-8 px-4 md:px-8 bg-black">
+    <section id="contact" className="py-8 px-4 md:px-8 bg-background">
       <div
         ref={sectionRef}
-        className="max-w-7xl mx-auto relative overflow-hidden rounded-[3rem] md:rounded-[5rem] bg-[#050505] border border-white/5 py-32 md:py-48 px-8 text-center group"
+        className="max-w-7xl mx-auto relative overflow-hidden rounded-[3rem] md:rounded-[5rem] bg-secondary dark:bg-[#050505] border border-foreground/5 py-32 md:py-48 px-8 text-center group"
       >
         {/* Interactive Ambient Glow */}
         <div
@@ -123,7 +123,7 @@ export function CTASection() {
           </div>
 
           {/* Secondary Contact */}
-          <div className="mt-24 pt-12 border-t border-white/5 reveal-on-scroll">
+          <div className="mt-24 pt-12 border-t border-foreground/5 reveal-on-scroll">
             <p className="text-neutral-600 text-[10px] uppercase tracking-[0.4em] mb-4">
               Or send a message to
             </p>

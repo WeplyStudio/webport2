@@ -25,7 +25,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="py-8 px-8 md:px-24 bg-black text-white selection:bg-white selection:text-black"
+      className="py-8 px-8 md:px-24 bg-background text-foreground selection:bg-foreground selection:text-background"
     >
       <div className="max-w-[1400px] mx-auto">
         {/* Manifesto Header */}
@@ -63,23 +63,23 @@ export function AboutSection() {
             {/* Services Minimalist List */}
             <div className="reveal-on-scroll">
               <div className="space-y-4">
-                <div className="group flex justify-between items-center py-4 border-b border-white/5 cursor-default">
+                <div className="group flex justify-between items-center py-4 border-b border-foreground/5 cursor-default">
                   <span className="text-xl font-semibold group-hover:italic group-hover:translate-x-2 transition-all duration-500">
                     Development
                   </span>
-                  <span className="text-[10px] text-neutral-700">01</span>
+                  <span className="text-[10px] text-muted-foreground">01</span>
                 </div>
-                <div className="group flex justify-between items-center py-4 border-b border-white/5 cursor-default">
+                <div className="group flex justify-between items-center py-4 border-b border-foreground/5 cursor-default">
                   <span className="text-xl font-semibold group-hover:italic group-hover:translate-x-2 transition-all duration-500">
                     Visual Design
                   </span>
-                  <span className="text-[10px] text-neutral-700">02</span>
+                  <span className="text-[10px] text-muted-foreground">02</span>
                 </div>
-                <div className="group flex justify-between items-center py-4 border-b border-white/5 cursor-default">
+                <div className="group flex justify-between items-center py-4 border-b border-foreground/5 cursor-default">
                   <span className="text-xl font-semibold group-hover:italic group-hover:translate-x-2 transition-all duration-500">
                     Architecture
                   </span>
-                  <span className="text-[10px] text-neutral-700">03</span>
+                  <span className="text-[10px] text-muted-foreground">03</span>
                 </div>
               </div>
             </div>

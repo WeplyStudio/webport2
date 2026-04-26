@@ -62,7 +62,7 @@ export function OfferingsSection() {
   }, [])
 
   return (
-    <section id="offerings" className="py-8 px-6 md:px-8 bg-black overflow-hidden">
+    <section id="offerings" className="py-8 px-6 md:px-8 bg-background overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         {/* Header Section */}
         <div className="mb-24 reveal-on-scroll">
@@ -78,29 +78,29 @@ export function OfferingsSection() {
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {/* Card 1: Experience & Industry */}
-          <div className="feature-card relative group p-8 md:p-12 rounded-[2.5rem] bg-[#0A0A0A] border border-white/5 overflow-hidden min-h-[500px] flex flex-col justify-between">
+          <div className="feature-card relative group p-8 md:p-12 rounded-[2.5rem] bg-secondary dark:bg-[#0A0A0A] border border-foreground/5 overflow-hidden min-h-[500px] flex flex-col justify-between">
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-600/10 blur-[100px] group-hover:bg-blue-600/20 transition-colors duration-700"></div>
 
             <div className="relative z-10">
               <div className="flex flex-wrap gap-3 mb-12">
-                <span className="px-4 py-2 rounded-full border border-white/10 text-[10px] uppercase tracking-widest font-bold text-neutral-400 group-hover:border-blue-500/50 transition-colors">
+                <span className="px-4 py-2 rounded-full border border-foreground/10 text-[10px] uppercase tracking-widest font-bold text-muted-foreground group-hover:border-blue-500/50 transition-colors">
                   SaaS Startups
                 </span>
-                <span className="px-4 py-2 rounded-full border border-white/10 text-[10px] uppercase tracking-widest font-bold text-neutral-400 group-hover:border-blue-500/50 transition-colors">
+                <span className="px-4 py-2 rounded-full border border-foreground/10 text-[10px] uppercase tracking-widest font-bold text-muted-foreground group-hover:border-blue-500/50 transition-colors">
                   E-commerce
                 </span>
-                <span className="px-4 py-2 rounded-full border border-white/10 text-[10px] uppercase tracking-widest font-bold text-neutral-400 group-hover:border-blue-500/50 transition-colors">
+                <span className="px-4 py-2 rounded-full border border-foreground/10 text-[10px] uppercase tracking-widest font-bold text-muted-foreground group-hover:border-blue-500/50 transition-colors">
                   Fintech
                 </span>
               </div>
-              <h4 className="text-3xl md:text-4xl font-bold tracking-tight leading-snug">
+              <h4 className="text-3xl md:text-4xl font-bold tracking-tight leading-snug text-foreground">
                 <span className="text-blue-500">6 years</span> of experience building{" "}
                 <span className="serif-italic font-light italic">cross-industry solutions.</span>
               </h4>
             </div>
 
             <div className="relative z-10">
-              <p className="text-neutral-500 text-sm leading-relaxed max-w-xs">
+              <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                 We&apos;ve handled 400+ projects across industries, from banking to interactive LIVE
                 platforms.
               </p>
@@ -108,18 +108,18 @@ export function OfferingsSection() {
           </div>
 
           {/* Card 2: Conversion Focus */}
-          <div className="feature-card relative group p-8 md:p-12 rounded-[2.5rem] bg-white text-black overflow-hidden min-h-[500px] flex flex-col justify-between">
+          <div className="feature-card relative group p-8 md:p-12 rounded-[2.5rem] bg-background dark:bg-white text-foreground dark:text-black overflow-hidden min-h-[500px] flex flex-col justify-between border border-foreground/5 dark:border-none">
             <div className="relative z-10">
               <div className="space-y-8 mb-12">
                 <div className="space-y-2">
                   <div className="flex justify-between items-end">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground dark:text-neutral-400">
                       Standard Website
                     </span>
                     <span className="text-2xl font-bold tracking-tighter">0%</span>
                   </div>
-                  <div className="h-1.5 w-full bg-neutral-100 rounded-full overflow-hidden">
-                    <div className="h-full w-[2%] bg-neutral-300"></div>
+                  <div className="h-1.5 w-full bg-secondary dark:bg-neutral-100 rounded-full overflow-hidden">
+                    <div className="h-full w-[2%] bg-muted-foreground dark:bg-neutral-300"></div>
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -129,7 +129,7 @@ export function OfferingsSection() {
                     </span>
                     <span className="text-2xl font-bold tracking-tighter text-blue-600">4-8%</span>
                   </div>
-                  <div className="h-1.5 w-full bg-neutral-100 rounded-full overflow-hidden">
+                  <div className="h-1.5 w-full bg-secondary dark:bg-neutral-100 rounded-full overflow-hidden">
                     <div className="h-full w-0 bg-blue-600 bar-reveal" data-width="65%"></div>
                   </div>
                 </div>
@@ -141,13 +141,13 @@ export function OfferingsSection() {
               </h4>
             </div>
 
-            <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               Boost sales and reach more clients through optimized and targeted design.
             </p>
           </div>
 
           {/* Card 3: Long Term Strategy */}
-          <div className="feature-card relative group p-8 md:p-12 rounded-[2.5rem] bg-white text-black overflow-hidden min-h-[500px] flex flex-col justify-between">
+          <div className="feature-card relative group p-8 md:p-12 rounded-[2.5rem] bg-background dark:bg-white text-foreground dark:text-black overflow-hidden min-h-[500px] flex flex-col justify-between border border-foreground/5 dark:border-none">
             <div className="relative z-10">
               <div className="mb-12 h-32 flex items-end">
                 <svg viewBox="0 0 200 60" className="w-full h-full overflow-visible">
@@ -185,13 +185,13 @@ export function OfferingsSection() {
               </h4>
             </div>
 
-            <p className="text-neutral-400 text-sm leading-relaxed max-w-sm">
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
               We design and optimize products to continuously grow following market trends.
             </p>
           </div>
 
           {/* Card 4: Design Reasoning */}
-          <div className="feature-card relative group p-8 md:p-12 rounded-[2.5rem] bg-[#0A0A0A] border border-white/5 overflow-hidden min-h-[500px] flex flex-col justify-between">
+          <div className="feature-card relative group p-8 md:p-12 rounded-[2.5rem] bg-secondary dark:bg-[#0A0A0A] border border-foreground/5 overflow-hidden min-h-[500px] flex flex-col justify-between">
             <div className="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity duration-700">
               <img
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
@@ -199,25 +199,25 @@ export function OfferingsSection() {
                 className="w-full h-full object-cover grayscale"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-background dark:from-black via-background/40 dark:via-black/40 to-transparent"></div>
 
             <div className="relative z-10 flex flex-col items-start gap-4 mb-12">
-              <div className="chat-bubble glass-panel px-4 py-2 rounded-2xl rounded-bl-none text-[10px] font-bold tracking-wider opacity-0 translate-y-4">
+              <div className="chat-bubble glass-panel px-4 py-2 rounded-2xl rounded-bl-none text-[10px] font-bold tracking-wider opacity-0 translate-y-4 text-foreground">
                 Why is this better?
               </div>
-              <div className="chat-bubble bg-blue-600 px-4 py-2 rounded-2xl rounded-br-none self-end text-[10px] font-bold tracking-wider opacity-0 translate-y-4">
+              <div className="chat-bubble bg-blue-600 text-white px-4 py-2 rounded-2xl rounded-br-none self-end text-[10px] font-bold tracking-wider opacity-0 translate-y-4">
                 Clearer CTA
               </div>
-              <div className="chat-bubble bg-blue-800 px-4 py-2 rounded-2xl rounded-br-none self-end text-[10px] font-bold tracking-wider opacity-0 translate-y-4">
+              <div className="chat-bubble bg-blue-800 text-white px-4 py-2 rounded-2xl rounded-br-none self-end text-[10px] font-bold tracking-wider opacity-0 translate-y-4">
                 Simplified Message
               </div>
             </div>
 
             <div className="relative z-10">
-              <h4 className="text-3xl md:text-4xl font-bold tracking-tight leading-snug">
+              <h4 className="text-3xl md:text-4xl font-bold tracking-tight leading-snug text-foreground">
                 Every Design Decision <span className="text-blue-500">Has a Reason.</span>
               </h4>
-              <p className="text-neutral-500 text-sm leading-relaxed mt-4 max-w-sm">
+              <p className="text-muted-foreground text-sm leading-relaxed mt-4 max-w-sm">
                 Every element is designed with purpose—not just aesthetics, but function and results.
               </p>
             </div>

@@ -52,7 +52,7 @@ export function FAQSection() {
   }
 
   return (
-    <section id="faq" className="py-12 px-6 md:px-24 bg-black border-t border-white/5">
+    <section id="faq" className="py-12 px-6 md:px-24 bg-background border-t border-foreground/5">
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20">
         {/* Left: Static Header */}
         <div className="lg:col-span-5 reveal-on-scroll">
@@ -73,17 +73,17 @@ export function FAQSection() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="faq-item border-b border-white/10 group cursor-pointer py-4"
+              className="faq-item border-b border-foreground/10 group cursor-pointer py-4"
               onClick={() => toggleFaq(index)}
             >
               <div className="flex justify-between items-center gap-8">
-                <h4 className="text-xl md:text-2xl font-bold tracking-tight transition-colors">
+                <h4 className="text-xl md:text-2xl font-bold tracking-tight transition-colors text-foreground">
                   {faq.question}
                 </h4>
                 <div className="faq-icon relative w-6 h-6 flex items-center justify-center shrink-0">
-                  <span className="absolute w-full h-[1px] bg-neutral-600 group-hover:bg-white"></span>
+                  <span className="absolute w-full h-[1px] bg-muted-foreground group-hover:bg-foreground"></span>
                   <span
-                    className="absolute w-[1px] h-full bg-neutral-600 group-hover:bg-white transition-transform duration-500"
+                    className="absolute w-[1px] h-full bg-muted-foreground group-hover:bg-foreground transition-transform duration-500"
                     style={{
                       transform: openIndex === index ? "rotate(90deg)" : "rotate(0)",
                       opacity: openIndex === index ? 0 : 1,
@@ -99,7 +99,7 @@ export function FAQSection() {
                 }}
               >
                 <div className="pt-8 pb-4">
-                  <p className="text-neutral-500 leading-relaxed max-w-xl">{faq.answer}</p>
+                  <p className="text-muted-foreground leading-relaxed max-w-xl">{faq.answer}</p>
                 </div>
               </div>
             </div>

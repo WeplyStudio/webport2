@@ -88,19 +88,19 @@ export default function AdminDashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white">Loading...</div>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-foreground">Loading...</div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-white/10 px-6 py-4">
+      <header className="border-b border-foreground/10 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <h1 className="text-xl font-bold text-white tracking-tight">Admin Dashboard</h1>
+            <h1 className="text-xl font-bold text-foreground tracking-tight">Admin Dashboard</h1>
             {unreadCount > 0 && (
               <span className="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full">
                 {unreadCount} new
@@ -110,7 +110,7 @@ export default function AdminDashboardPage() {
           <div className="flex items-center gap-4">
             <a
               href="/"
-              className="text-neutral-500 hover:text-white text-sm transition-colors"
+              className="text-muted-foreground hover:text-foreground text-sm transition-colors"
             >
               View Site
             </a>

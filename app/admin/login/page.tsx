@@ -39,11 +39,11 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-6">
+    <div className="min-h-screen bg-background flex items-center justify-center px-6">
       <div className="w-full max-w-md">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-tighter text-white mb-2">Admin Login</h1>
-          <p className="text-neutral-500 text-sm">Enter your credentials to access the dashboard</p>
+          <h1 className="text-4xl font-bold tracking-tighter text-foreground mb-2">Admin Login</h1>
+          <p className="text-muted-foreground text-sm">Enter your credentials to access the dashboard</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -54,28 +54,28 @@ export default function AdminLoginPage() {
           )}
 
           <div>
-            <label className="text-[10px] uppercase tracking-[0.3em] text-neutral-500 block mb-2">
+            <label className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground block mb-2">
               Username
             </label>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-4 text-white placeholder:text-neutral-600 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full bg-secondary dark:bg-neutral-900 border border-foreground/10 rounded-xl px-4 py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-blue-500 transition-colors"
               placeholder="Enter username"
               required
             />
           </div>
 
           <div>
-            <label className="text-[10px] uppercase tracking-[0.3em] text-neutral-500 block mb-2">
+            <label className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground block mb-2">
               Password
             </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-4 text-white placeholder:text-neutral-600 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full bg-secondary dark:bg-neutral-900 border border-foreground/10 rounded-xl px-4 py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-blue-500 transition-colors"
               placeholder="Enter password"
               required
             />
@@ -91,7 +91,7 @@ export default function AdminLoginPage() {
         </form>
 
         <div className="mt-8 text-center">
-          <a href="/" className="text-neutral-500 hover:text-white text-sm transition-colors">
+          <a href="/" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
             &larr; Back to website
           </a>
         </div>

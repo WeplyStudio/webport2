@@ -89,7 +89,7 @@ export function PricingSection() {
     <section
       ref={sectionRef}
       id="pricing-plans"
-      className="py-24 md:py-20 bg-black border-t border-white/5 relative overflow-hidden"
+      className="py-24 md:py-20 bg-background border-t border-foreground/5 relative overflow-hidden"
     >
       {/* Background Decor */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-600/5 blur-[150px] rounded-full pointer-events-none"></div>
@@ -101,9 +101,9 @@ export function PricingSection() {
             <h3 className="text-[9px] md:text-[10px] uppercase tracking-[0.6em] md:tracking-[0.8em] text-neutral-600 mb-4 md:mb-8 font-black italic">
               05 — Investment
             </h3>
-            <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-white uppercase">
+            <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-foreground uppercase">
               Choose <br />{" "}
-              <span className="serif-italic font-light text-neutral-500 italic lowercase">
+              <span className="serif-italic font-light text-muted-foreground italic lowercase">
                 your
               </span>{" "}
               rhythm.
@@ -115,26 +115,26 @@ export function PricingSection() {
             <div className="flex items-center gap-4">
               <span
                 className={`text-[9px] font-bold uppercase tracking-widest transition-colors duration-500 ${
-                  !isYearly ? "text-white" : "text-neutral-500"
+                  !isYearly ? "text-foreground" : "text-muted-foreground"
                 }`}
               >
                 Monthly
               </span>
               <button
                 onClick={() => setIsYearly(!isYearly)}
-                className="relative w-14 h-7 md:w-16 md:h-8 bg-neutral-900 rounded-full border border-white/10 p-1 group"
+                className="relative w-14 h-7 md:w-16 md:h-8 bg-secondary dark:bg-neutral-900 rounded-full border border-foreground/10 p-1 group"
               >
                 <div
                   className="w-5 h-5 md:w-6 md:h-6 rounded-full transition-all duration-500 ease-[cubic-bezier(0.7,0,0.3,1)]"
                   style={{
                     transform: isYearly ? "translateX(28px)" : "translateX(0)",
-                    backgroundColor: isYearly ? "#3b82f6" : "#fff",
+                    backgroundColor: isYearly ? "#3b82f6" : "var(--foreground)",
                   }}
                 ></div>
               </button>
               <span
                 className={`text-[9px] font-bold uppercase tracking-widest transition-colors duration-500 ${
-                  isYearly ? "text-white" : "text-neutral-500"
+                  isYearly ? "text-foreground" : "text-muted-foreground"
                 }`}
               >
                 Yearly
@@ -158,8 +158,8 @@ export function PricingSection() {
               key={plan.name}
               className={`pricing-card shrink-0 w-[80vw] md:w-[400px] snap-start group relative p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] flex flex-col justify-between overflow-hidden transition-all duration-700 ${
                 index === 1
-                  ? "bg-white text-black shadow-2xl z-20"
-                  : "bg-[#0A0A0A] border border-white/5 hover:border-white/20"
+                  ? "bg-background dark:bg-white text-foreground dark:text-black shadow-2xl z-20 border border-foreground/5 dark:border-none"
+                  : "bg-secondary dark:bg-[#0A0A0A] border border-foreground/5 hover:border-foreground/20"
               }`}
             >
               {index === 1 && (
@@ -173,27 +173,27 @@ export function PricingSection() {
               <div className="relative z-10">
                 <span
                   className={`text-[9px] font-bold uppercase tracking-[0.4em] mb-6 md:mb-8 block ${
-                    index === 1 ? "text-neutral-400" : "text-neutral-500"
+                    index === 1 ? "text-muted-foreground dark:text-neutral-400" : "text-muted-foreground"
                   }`}
                 >
                   {plan.type}
                 </span>
                 <h4
                   className={`text-3xl md:text-4xl font-bold tracking-tighter mb-3 md:mb-4 uppercase ${
-                    index === 1 ? "text-black" : "text-white"
+                    index === 1 ? "text-foreground dark:text-black" : "text-foreground"
                   }`}
                 >
                   {plan.name}
                 </h4>
                 <p
                   className={`text-xs md:text-sm leading-relaxed mb-8 md:mb-12 max-w-[240px] ${
-                    index === 1 ? "text-neutral-400" : "text-neutral-500"
+                    index === 1 ? "text-muted-foreground dark:text-neutral-400" : "text-muted-foreground"
                   }`}
                 >
                   {plan.description}
                 </p>
 
-                <div className={`mb-8 md:mb-12 ${index === 1 ? "text-black" : "text-white"}`}>
+                <div className={`mb-8 md:mb-12 ${index === 1 ? "text-foreground dark:text-black" : "text-foreground"}`}>
                   <PriceDisplay price={plan.prices} isYearly={isYearly} />
                 </div>
 
@@ -202,7 +202,7 @@ export function PricingSection() {
                     <li
                       key={feature}
                       className={`flex items-center gap-3 text-[9px] font-bold uppercase tracking-widest ${
-                        index === 1 ? "text-neutral-600" : "text-neutral-400"
+                        index === 1 ? "text-muted-foreground dark:text-neutral-600" : "text-muted-foreground"
                       }`}
                     >
                       <span className={index === 1 ? "text-blue-600 font-bold" : "text-blue-500 font-bold"}>
@@ -217,8 +217,8 @@ export function PricingSection() {
               <button
                 className={`w-full py-4 md:py-5 rounded-xl md:rounded-2xl text-[9px] font-bold uppercase tracking-[0.3em] transition-all ${
                   index === 1
-                    ? "bg-black text-white hover:bg-blue-600 shadow-xl"
-                    : "bg-neutral-900 border border-white/5 text-white hover:bg-white hover:text-black"
+                    ? "bg-foreground dark:bg-black text-background dark:text-white hover:bg-blue-600 hover:text-white shadow-xl"
+                    : "bg-secondary dark:bg-neutral-900 border border-foreground/5 text-foreground hover:bg-foreground hover:text-background"
                 }`}
               >
                 {index === 1 ? "Get Started" : index === 2 ? "Contact Me" : "Choose Plan"}

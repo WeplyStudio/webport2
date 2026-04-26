@@ -47,7 +47,7 @@ export function StickyFooter() {
         </div>
 
         <div className="pt-10 border-t border-foreground/5">
-          <p className="text-slate-500 text-[10px] uppercase tracking-[0.5em]">
+          <p className="text-muted-foreground text-[10px] uppercase tracking-[0.5em]">
             Jason &copy; 2026 — Made with love
           </p>
         </div>
