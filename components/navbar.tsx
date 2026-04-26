@@ -9,7 +9,7 @@ interface NavbarProps {
 
 export function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
   return (
-    <nav className="fixed top-0 w-full z-[350] px-8 py-10 flex justify-between items-center mix-blend-difference">
+    <nav className="fixed top-0 w-full z-[350] px-8 py-10 flex justify-between items-center text-foreground">
       <a href="#" className="text-xs md:text-sm font-bold tracking-tighter hover:opacity-50 transition">
         Jasonn.doc™
       </a>
@@ -30,8 +30,8 @@ export function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
             Menu
           </span>
           <div className="flex flex-col gap-1.5">
-            <span className="w-6 h-0.5 bg-current transition-transform duration-500"></span>
-            <span className="w-6 h-0.5 bg-current transition-transform duration-500"></span>
+            <span className="w-6 h-0.5 bg-foreground transition-transform duration-500"></span>
+            <span className="w-6 h-0.5 bg-foreground transition-transform duration-500"></span>
           </div>
         </button>
       </div>
