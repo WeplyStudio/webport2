@@ -14,7 +14,7 @@ export function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
         Jasonn.doc™
       </a>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
         <ThemeToggle />
         
         <button
