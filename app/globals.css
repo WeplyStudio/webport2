@@ -244,7 +244,7 @@
 }
 
 .menu-link {
-  font-size: clamp(3rem, 8vw, 10rem);
+  font-size: clamp(2rem, 6vw, 5rem);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.05em;
