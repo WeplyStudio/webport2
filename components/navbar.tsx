@@ -10,7 +10,7 @@ interface NavbarProps {
 export function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
   return (
     <nav className="fixed top-0 w-full z-[350] px-8 py-10 flex justify-between items-center text-foreground">
-      <a href="#" className="text-xs md:text-sm font-bold tracking-tighter hover:opacity-50 transition">
+      <a href="#" className="text-sm md:text-base font-bold tracking-tighter hover:opacity-50 transition">
         Jasonn.doc™
       </a>
 
