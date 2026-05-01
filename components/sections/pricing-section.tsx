@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { AIPricingEstimator } from "@/components/ai-pricing-estimator"
 
 interface PriceTicker {
   monthly: number
@@ -227,6 +228,22 @@ export function PricingSection() {
           ))}
 
           <div className="shrink-0 w-6 md:w-24"></div>
+        </div>
+
+        {/* AI Pricing Estimator Section */}
+        <div className="px-6 md:px-24 py-20 md:py-24 border-t border-foreground/5 reveal-on-scroll">
+          <div className="mb-16">
+            <h3 className="text-[9px] md:text-[10px] uppercase tracking-[0.6em] md:tracking-[0.8em] text-muted-foreground mb-4 font-bold italic">
+              AI-Powered Pricing
+            </h3>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[0.9] text-foreground mb-3">
+              Get Instant <span className="serif-italic font-light text-blue-500 italic lowercase">Quote</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl">
+              Describe your project and let our AI provide a detailed pricing estimate with feature breakdown in seconds.
+            </p>
+          </div>
+          <AIPricingEstimator />
         </div>
       </div>
     </section>

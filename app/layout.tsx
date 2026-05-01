@@ -25,6 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script src="https://js.puter.com/v2/"></script>
+      </head>
       <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
         <ThemeProvider
           attribute="class"
