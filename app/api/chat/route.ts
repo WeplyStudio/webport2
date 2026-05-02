@@ -1,10 +1,11 @@
 import { streamText, convertToModelMessages } from 'ai'
+import { google } from '@ai-sdk/google'
 
 export async function POST(req: Request) {
   const { messages } = await req.json()
 
   const result = streamText({
-    model: 'google/gemini-2.0-flash',
+    model: google('gemini-2.0-flash'),
     system: `You are Joy, a friendly and helpful personal assistant on this website. You are knowledgeable about everything on this website and can answer questions about its features, content, and functionality. 
 
 Your personality is:
