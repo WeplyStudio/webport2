@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { Briefcase, Github, Mail, Calendar, Linkedin, Twitter, Instagram, Dribbble, ArrowRight } from 'lucide-react'
 
 const links = [
   {
@@ -10,8 +11,7 @@ const links = [
     title: 'Portfolio',
     description: 'View all my projects',
     url: '#',
-    icon: '🎨',
-    gradient: 'from-blue-500 to-purple-600',
+    icon: Briefcase,
     featured: true
   },
   {
@@ -19,8 +19,7 @@ const links = [
     title: 'LinkedIn',
     description: 'Connect professionally',
     url: 'https://linkedin.com',
-    icon: '💼',
-    gradient: 'from-blue-600 to-blue-400',
+    icon: Linkedin,
     featured: true
   },
   {
@@ -28,8 +27,7 @@ const links = [
     title: 'GitHub',
     description: 'View my code',
     url: 'https://github.com',
-    icon: '💻',
-    gradient: 'from-gray-800 to-gray-600',
+    icon: Github,
     featured: true
   },
   {
@@ -37,51 +35,44 @@ const links = [
     title: 'Twitter/X',
     description: 'Follow me',
     url: 'https://twitter.com',
-    icon: '𝕏',
-    gradient: 'from-black to-gray-800'
+    icon: Twitter
   },
   {
     id: 5,
     title: 'Instagram',
     description: 'Behind the scenes',
     url: 'https://instagram.com',
-    icon: '📸',
-    gradient: 'from-pink-500 via-purple-500 to-blue-500'
+    icon: Instagram
   },
   {
     id: 6,
     title: 'Dribbble',
     description: 'Design work',
     url: 'https://dribbble.com',
-    icon: '🎯',
-    gradient: 'from-pink-400 to-red-500'
+    icon: Dribbble
   },
   {
     id: 7,
     title: 'Email',
     description: 'Get in touch',
     url: 'mailto:hello@jasonndoc.com',
-    icon: '✉️',
-    gradient: 'from-orange-400 to-red-500'
+    icon: Mail
   },
   {
     id: 8,
     title: 'Book a Call',
     description: 'Schedule meeting',
     url: '#',
-    icon: '📞',
-    gradient: 'from-green-400 to-emerald-500'
+    icon: Calendar
   }
 ]
 
 export default function LinksPage() {
-  const [hoveredId, setHoveredId] = useState<number | null>(null)
-
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <header className="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-foreground/5">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="text-sm md:text-base font-bold tracking-tighter hover:opacity-50 transition">
             Jasonn.doc™
           </Link>
@@ -94,161 +85,110 @@ export default function LinksPage() {
         </div>
       </header>
 
-      <main className="pt-24 pb-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-12">
-            {/* Left Sidebar - Profile */}
-            <div className="md:col-span-1">
-              <div className="sticky top-28">
-                {/* Avatar */}
-                <div className="w-40 h-40 mx-auto md:mx-0 mb-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1 flex items-center justify-center overflow-hidden">
-                  <div className="w-full h-full rounded-full bg-background flex items-center justify-center text-6xl">
-                    👨‍💻
+      <main className="pt-24 pb-16">
+        <div className="max-w-4xl mx-auto px-6">
+          {/* Profile Section */}
+          <div className="text-center mb-12">
+            <div className="w-28 h-28 mx-auto mb-6 rounded-full bg-secondary border-2 border-foreground/10 flex items-center justify-center text-4xl font-bold">
+              JD
+            </div>
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+              Jason
+            </h1>
+            <p className="text-foreground/70 text-sm mb-4">
+              Digital Architect & Web Developer
+            </p>
+            <p className="text-muted-foreground text-sm max-w-md mx-auto leading-relaxed">
+              Creating harmony between complex code and pristine interfaces. Let's build something amazing together.
+            </p>
+          </div>
+
+          {/* Featured Links */}
+          <div className="space-y-3 mb-12">
+            {links.filter(link => link.featured).map((link) => {
+              const IconComponent = link.icon
+              return (
+                <a
+                  key={link.id}
+                  href={link.url}
+                  className="group flex items-center gap-4 p-4 rounded-xl bg-secondary border border-foreground/5 hover:border-foreground/20 transition-all duration-300"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-foreground/5 group-hover:bg-foreground/10 flex items-center justify-center transition-colors">
+                    <IconComponent className="w-5 h-5 text-foreground/70 group-hover:text-foreground transition-colors" />
                   </div>
-                </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-semibold text-foreground">
+                      {link.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                      {link.description}
+                    </p>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-foreground/40 group-hover:text-foreground/60 group-hover:translate-x-1 transition-all" />
+                </a>
+              )
+            })}
+          </div>
 
-                {/* Profile Info */}
-                <h1 className="text-4xl md:text-3xl font-bold tracking-tight mb-3 text-center md:text-left">
-                  Jason
-                </h1>
-                <p className="text-muted-foreground text-sm mb-4 text-center md:text-left leading-relaxed">
-                  Digital Architect & Creative Developer crafting beautiful digital experiences.
-                </p>
-
-                {/* Social Icons */}
-                <div className="flex gap-3 mb-8 justify-center md:justify-start">
-                  <a href="#" className="w-10 h-10 rounded-full bg-blue-500/20 hover:bg-blue-500 flex items-center justify-center transition text-sm font-bold">
-                    f
-                  </a>
-                  <a href="#" className="w-10 h-10 rounded-full bg-blue-400/20 hover:bg-blue-400 flex items-center justify-center transition text-sm font-bold">
-                    𝕏
-                  </a>
-                  <a href="#" className="w-10 h-10 rounded-full bg-pink-500/20 hover:bg-pink-500 flex items-center justify-center transition text-sm font-bold">
-                    📷
-                  </a>
-                  <a href="#" className="w-10 h-10 rounded-full bg-red-500/20 hover:bg-red-500 flex items-center justify-center transition text-sm font-bold">
-                    ▶
-                  </a>
-                </div>
-
-                {/* CTA Button */}
-                <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-4 rounded-xl transition duration-300 text-sm">
-                  Get in Touch
-                </button>
-              </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="md:col-span-2">
-              {/* Featured Section */}
-              <div className="mb-16">
-                <h2 className="text-xs uppercase tracking-[0.6em] text-muted-foreground font-bold mb-6 italic">
-                  Featured Links
-                </h2>
-                <div className="space-y-4">
-                  {links.filter(link => link.featured).map((link) => (
-                    <a
-                      key={link.id}
-                      href={link.url}
-                      onMouseEnter={() => setHoveredId(link.id)}
-                      onMouseLeave={() => setHoveredId(null)}
-                      className={`group relative block overflow-hidden rounded-2xl transition-all duration-300 ${
-                        hoveredId === link.id ? 'shadow-2xl scale-105' : 'shadow-lg hover:shadow-xl'
-                      }`}
-                    >
-                      {/* Gradient Background */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${link.gradient}`} />
-                      
-                      {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                      {/* Content */}
-                      <div className="relative z-10 p-6">
-                        <div className="flex items-start justify-between mb-3">
-                          <div className="text-5xl">{link.icon}</div>
-                          <div className="text-2xl opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300">
-                            →
-                          </div>
-                        </div>
-                        <h3 className="text-2xl font-bold text-white mb-2">{link.title}</h3>
-                        <p className="text-white/90 text-sm">{link.description}</p>
+          {/* All Links */}
+          <div>
+            <h2 className="text-xs uppercase tracking-[0.4em] text-muted-foreground font-semibold mb-4">
+              More Links
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {links.filter(link => !link.featured).map((link) => {
+                const IconComponent = link.icon
+                return (
+                  <a
+                    key={link.id}
+                    href={link.url}
+                    className="group p-4 rounded-lg bg-secondary border border-foreground/5 hover:border-foreground/20 transition-all duration-300 text-center"
+                  >
+                    <div className="w-full flex justify-center mb-2">
+                      <div className="w-10 h-10 rounded-lg bg-foreground/5 group-hover:bg-foreground/10 flex items-center justify-center transition-colors">
+                        <IconComponent className="w-5 h-5 text-foreground/70 group-hover:text-foreground transition-colors" />
                       </div>
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              {/* All Links Grid */}
-              <div>
-                <h2 className="text-xs uppercase tracking-[0.6em] text-muted-foreground font-bold mb-6 italic">
-                  All Links
-                </h2>
-                <div className="grid grid-cols-2 gap-4">
-                  {links.map((link) => (
-                    <a
-                      key={link.id}
-                      href={link.url}
-                      onMouseEnter={() => setHoveredId(link.id)}
-                      onMouseLeave={() => setHoveredId(null)}
-                      className={`group relative block overflow-hidden rounded-xl transition-all duration-300 ${
-                        hoveredId === link.id ? 'shadow-xl scale-105' : 'shadow-md hover:shadow-lg'
-                      }`}
-                    >
-                      {/* Gradient Background */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${link.gradient}`} />
-                      
-                      {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                      {/* Content */}
-                      <div className="relative z-10 p-4">
-                        <div className="text-3xl mb-2">{link.icon}</div>
-                        <h3 className="text-sm font-bold text-white mb-1">{link.title}</h3>
-                        <p className="text-white/80 text-xs line-clamp-1">{link.description}</p>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              </div>
+                    </div>
+                    <h3 className="text-xs font-semibold text-foreground mb-1">
+                      {link.title}
+                    </h3>
+                    <p className="text-[10px] text-muted-foreground line-clamp-1">
+                      {link.description}
+                    </p>
+                  </a>
+                )
+              })}
             </div>
           </div>
-        </div>
 
-        {/* Stats Section */}
-        <div className="border-t border-foreground/10 mt-20 pt-16">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-3 gap-8 text-center">
-              <div>
-                <div className="text-4xl font-bold text-blue-500 mb-2">400+</div>
-                <p className="text-muted-foreground text-sm">Projects Done</p>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-purple-500 mb-2">100+</div>
-                <p className="text-muted-foreground text-sm">Happy Clients</p>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-emerald-500 mb-2">6+</div>
-                <p className="text-muted-foreground text-sm">Years Experience</p>
-              </div>
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-6 mt-16 pt-12 border-t border-foreground/5">
+            <div className="text-center">
+              <div className="text-2xl md:text-3xl font-bold text-foreground mb-1">400+</div>
+              <p className="text-xs text-muted-foreground">Projects Done</p>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl md:text-3xl font-bold text-foreground mb-1">100+</div>
+              <p className="text-xs text-muted-foreground">Happy Clients</p>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl md:text-3xl font-bold text-foreground mb-1">6+</div>
+              <p className="text-xs text-muted-foreground">Years Experience</p>
             </div>
           </div>
-        </div>
 
-        {/* Footer */}
-        <footer className="border-t border-foreground/10 mt-20 pt-12">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <p className="text-muted-foreground text-xs uppercase tracking-[0.3em] mb-3">
+          {/* Footer */}
+          <div className="text-center mt-12 pt-8 border-t border-foreground/5">
+            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-2">
               Let's Connect
             </p>
-            <a href="mailto:hello@jasonndoc.com" className="text-foreground hover:text-blue-500 font-bold text-lg transition mb-8 inline-block">
+            <a href="mailto:hello@jasonndoc.com" className="text-foreground hover:text-foreground/60 transition text-sm font-medium">
               hello@jasonndoc.com
             </a>
-            <p className="text-muted-foreground text-xs">
-              © 2026 Jason. All rights reserved.
-            </p>
           </div>
-        </footer>
+        </div>
       </main>
     </div>
   )
 }
+
