@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { Briefcase, Github, Mail, Calendar, Linkedin, Twitter, Instagram, Dribbble, ArrowRight } from 'lucide-react'
+import { Briefcase, Github, Mail, Calendar, Linkedin, Twitter, Instagram, Dribbble, ArrowUpRight } from 'lucide-react'
 
 const links = [
   {
@@ -12,7 +12,7 @@ const links = [
     description: 'View all my projects',
     url: '#',
     icon: Briefcase,
-    featured: true
+    size: 'large'
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const links = [
     description: 'Connect professionally',
     url: 'https://linkedin.com',
     icon: Linkedin,
-    featured: true
+    size: 'medium'
   },
   {
     id: 3,
@@ -28,52 +28,96 @@ const links = [
     description: 'View my code',
     url: 'https://github.com',
     icon: Github,
-    featured: true
+    size: 'medium'
   },
   {
     id: 4,
-    title: 'Twitter/X',
+    title: 'Twitter',
     description: 'Follow me',
     url: 'https://twitter.com',
-    icon: Twitter
+    icon: Twitter,
+    size: 'small'
   },
   {
     id: 5,
     title: 'Instagram',
     description: 'Behind the scenes',
     url: 'https://instagram.com',
-    icon: Instagram
+    icon: Instagram,
+    size: 'small'
   },
   {
     id: 6,
     title: 'Dribbble',
     description: 'Design work',
     url: 'https://dribbble.com',
-    icon: Dribbble
+    icon: Dribbble,
+    size: 'small'
   },
   {
     id: 7,
     title: 'Email',
     description: 'Get in touch',
     url: 'mailto:hello@jasonndoc.com',
-    icon: Mail
+    icon: Mail,
+    size: 'medium'
   },
   {
     id: 8,
     title: 'Book a Call',
     description: 'Schedule meeting',
     url: '#',
-    icon: Calendar
+    icon: Calendar,
+    size: 'medium'
   }
 ]
 
 export default function LinksPage() {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const items = container.querySelectorAll('[data-tilt]')
+      items.forEach((item) => {
+        const rect = item.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
+
+        const centerX = rect.width / 2
+        const centerY = rect.height / 2
+
+        const rotateX = (y - centerY) / 20
+        const rotateY = (centerX - x) / 20
+
+        ;(item as HTMLElement).style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+      })
+    }
+
+    const handleMouseLeave = () => {
+      const items = container.querySelectorAll('[data-tilt]')
+      items.forEach((item) => {
+        ;(item as HTMLElement).style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)'
+      })
+    }
+
+    container.addEventListener('mousemove', handleMouseMove)
+    container.addEventListener('mouseleave', handleMouseLeave)
+
+    return () => {
+      container.removeEventListener('mousemove', handleMouseMove)
+      container.removeEventListener('mouseleave', handleMouseLeave)
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <header className="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-foreground/5">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-sm md:text-base font-bold tracking-tighter hover:opacity-50 transition">
+        <div className="max-w-2xl mx-auto px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="text-sm font-bold tracking-tighter hover:opacity-50 transition">
             Jasonn.doc™
           </Link>
           <div className="flex items-center gap-2">
@@ -85,104 +129,124 @@ export default function LinksPage() {
         </div>
       </header>
 
-      <main className="pt-24 pb-16">
-        <div className="max-w-4xl mx-auto px-6">
-          {/* Profile Section */}
-          <div className="text-center mb-12">
-            <div className="w-28 h-28 mx-auto mb-6 rounded-full bg-secondary border-2 border-foreground/10 flex items-center justify-center text-4xl font-bold">
+      <main className="pt-24 pb-20 px-6">
+        <div className="max-w-lg mx-auto">
+          {/* Profile Header */}
+          <div className="mb-12">
+            <div className="w-20 h-20 rounded-3xl bg-secondary border border-foreground/10 flex items-center justify-center text-2xl font-bold mb-6">
               JD
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+            <h1 className="text-4xl font-bold tracking-tight mb-2">
               Jason
             </h1>
-            <p className="text-foreground/70 text-sm mb-4">
+            <p className="text-sm text-muted-foreground">
               Digital Architect & Web Developer
             </p>
-            <p className="text-muted-foreground text-sm max-w-md mx-auto leading-relaxed">
-              Creating harmony between complex code and pristine interfaces. Let's build something amazing together.
-            </p>
           </div>
 
-          {/* Featured Links */}
-          <div className="space-y-3 mb-12">
-            {links.filter(link => link.featured).map((link) => {
-              const IconComponent = link.icon
-              return (
-                <a
-                  key={link.id}
-                  href={link.url}
-                  className="group flex items-center gap-4 p-4 rounded-xl bg-secondary border border-foreground/5 hover:border-foreground/20 transition-all duration-300"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-foreground/5 group-hover:bg-foreground/10 flex items-center justify-center transition-colors">
-                    <IconComponent className="w-5 h-5 text-foreground/70 group-hover:text-foreground transition-colors" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-semibold text-foreground">
-                      {link.title}
-                    </h3>
-                    <p className="text-xs text-muted-foreground">
-                      {link.description}
-                    </p>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-foreground/40 group-hover:text-foreground/60 group-hover:translate-x-1 transition-all" />
-                </a>
-              )
-            })}
-          </div>
+          {/* Bento Grid */}
+          <div className="space-y-3" ref={containerRef}>
+            {/* Large Card - Portfolio */}
+            <a
+              href={links[0].url}
+              data-tilt
+              className="group relative block bg-secondary border border-foreground/10 rounded-3xl p-6 hover:border-foreground/30 transition-all duration-300 cursor-pointer overflow-hidden"
+              style={{ transitionProperty: 'transform', transitionDuration: '0.3s' }}
+            >
+              <div className="flex items-start justify-between mb-12">
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">Featured</span>
+                <ArrowUpRight className="w-4 h-4 text-foreground/30 group-hover:text-foreground/60 group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
+              </div>
+              <div>
+                <Briefcase className="w-8 h-8 text-foreground/70 mb-3" />
+                <h2 className="text-2xl font-bold tracking-tight leading-tight">
+                  {links[0].title}
+                </h2>
+                <p className="text-xs text-muted-foreground mt-2">{links[0].description}</p>
+              </div>
+            </a>
 
-          {/* All Links */}
-          <div>
-            <h2 className="text-xs uppercase tracking-[0.4em] text-muted-foreground font-semibold mb-4">
-              More Links
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {links.filter(link => !link.featured).map((link) => {
+            {/* 2x2 Grid for Medium Cards */}
+            <div className="grid grid-cols-2 gap-3">
+              {links.slice(1, 3).map((link) => {
                 const IconComponent = link.icon
                 return (
                   <a
                     key={link.id}
                     href={link.url}
-                    className="group p-4 rounded-lg bg-secondary border border-foreground/5 hover:border-foreground/20 transition-all duration-300 text-center"
+                    data-tilt
+                    className="group relative block bg-secondary border border-foreground/10 rounded-2xl p-5 hover:border-foreground/30 transition-all duration-300 cursor-pointer overflow-hidden"
+                    style={{ transitionProperty: 'transform', transitionDuration: '0.3s' }}
                   >
-                    <div className="w-full flex justify-center mb-2">
-                      <div className="w-10 h-10 rounded-lg bg-foreground/5 group-hover:bg-foreground/10 flex items-center justify-center transition-colors">
-                        <IconComponent className="w-5 h-5 text-foreground/70 group-hover:text-foreground transition-colors" />
-                      </div>
+                    <div className="flex items-start justify-between mb-6">
+                      <IconComponent className="w-5 h-5 text-foreground/70" />
+                      <ArrowUpRight className="w-3 h-3 text-foreground/20 group-hover:text-foreground/50 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
                     </div>
-                    <h3 className="text-xs font-semibold text-foreground mb-1">
-                      {link.title}
-                    </h3>
-                    <p className="text-[10px] text-muted-foreground line-clamp-1">
-                      {link.description}
-                    </p>
+                    <h3 className="text-sm font-semibold">{link.title}</h3>
+                    <p className="text-[10px] text-muted-foreground mt-1">{link.description}</p>
                   </a>
                 )
               })}
             </div>
+
+            {/* 4x1 Grid for Small Cards */}
+            <div className="grid grid-cols-4 gap-2">
+              {links.slice(3, 7).map((link) => {
+                const IconComponent = link.icon
+                return (
+                  <a
+                    key={link.id}
+                    href={link.url}
+                    data-tilt
+                    className="group relative block bg-secondary border border-foreground/10 rounded-xl p-3 hover:border-foreground/30 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col items-center text-center"
+                    style={{ transitionProperty: 'transform', transitionDuration: '0.3s' }}
+                  >
+                    <IconComponent className="w-5 h-5 text-foreground/70 mb-2 group-hover:scale-110 transition-transform" />
+                    <p className="text-[9px] font-semibold line-clamp-1">{link.title}</p>
+                  </a>
+                )
+              })}
+            </div>
+
+            {/* Bottom - Email/Contact */}
+            <a
+              href={links[7].url}
+              data-tilt
+              className="group relative block bg-secondary border border-foreground/10 rounded-2xl p-5 hover:border-foreground/30 transition-all duration-300 cursor-pointer overflow-hidden flex items-center justify-between"
+              style={{ transitionProperty: 'transform', transitionDuration: '0.3s' }}
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-foreground/5 flex items-center justify-center">
+                  <Calendar className="w-5 h-5 text-foreground/70" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold">{links[7].title}</h3>
+                  <p className="text-[10px] text-muted-foreground">{links[7].description}</p>
+                </div>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-foreground/30 group-hover:text-foreground/60 group-hover:-translate-y-1 group-hover:translate-x-1 transition-all shrink-0" />
+            </a>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-6 mt-16 pt-12 border-t border-foreground/5">
+          <div className="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-foreground/5">
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-foreground mb-1">400+</div>
-              <p className="text-xs text-muted-foreground">Projects Done</p>
+              <div className="text-xl font-bold text-foreground mb-1">400+</div>
+              <p className="text-[10px] text-muted-foreground">Projects</p>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-foreground mb-1">100+</div>
-              <p className="text-xs text-muted-foreground">Happy Clients</p>
+              <div className="text-xl font-bold text-foreground mb-1">100+</div>
+              <p className="text-[10px] text-muted-foreground">Clients</p>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-foreground mb-1">6+</div>
-              <p className="text-xs text-muted-foreground">Years Experience</p>
+              <div className="text-xl font-bold text-foreground mb-1">6+</div>
+              <p className="text-[10px] text-muted-foreground">Years</p>
             </div>
           </div>
 
-          {/* Footer */}
-          <div className="text-center mt-12 pt-8 border-t border-foreground/5">
-            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-2">
-              Let's Connect
-            </p>
-            <a href="mailto:hello@jasonndoc.com" className="text-foreground hover:text-foreground/60 transition text-sm font-medium">
+          {/* Email */}
+          <div className="text-center mt-8 pt-6 border-t border-foreground/5">
+            <a href="mailto:hello@jasonndoc.com" className="text-sm text-foreground hover:text-foreground/60 transition font-medium">
               hello@jasonndoc.com
             </a>
           </div>
