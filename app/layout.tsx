@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { RootLayoutClient } from '@/components/root-layout-client'
 import './globals.css'
 
 const inter = Inter({ 
@@ -32,7 +33,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <RootLayoutClient>{children}</RootLayoutClient>
         </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
         <script src="https://js.puter.com/v2/" async></script>
