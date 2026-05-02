@@ -35,6 +35,7 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        <script src="https://js.puter.com/v2/" async></script>
       </body>
     </html>
   )
