@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useChat } from '@ai-sdk/react'
 import { DefaultChatTransport } from 'ai'
-import { ChevronLeft, Maximize2, Smile, Paperclip, MessageCircle, Bot } from 'lucide-react'
+import { ChevronLeft, Maximize2, MessageCircle, Bot, Send } from 'lucide-react'
 
 export function JoyChat() {
   const [open, setOpen] = useState(false)
@@ -188,8 +188,8 @@ export function JoyChat() {
 
             {/* Input Area */}
             <div className="bg-white border-t border-gray-100 p-4">
-              <form onSubmit={handleSubmit} className="flex items-center gap-2">
-                <div className="flex-1 flex items-center bg-gray-50 rounded-xl border border-gray-200 px-4 py-2.5 focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-100 transition-all">
+              <form onSubmit={handleSubmit} className="flex items-center gap-3">
+                <div className="flex-1 flex items-center bg-gray-50 rounded-xl border border-gray-200 px-4 py-2.5 focus-within:border-gray-400 focus-within:ring-2 focus-within:ring-gray-100 transition-all">
                   <input
                     type="text"
                     value={input}
@@ -198,23 +198,15 @@ export function JoyChat() {
                     className="flex-1 bg-transparent text-gray-700 placeholder-gray-400 text-sm focus:outline-none"
                     disabled={status === 'streaming'}
                   />
-                  <div className="flex items-center gap-1 ml-2">
-                    <button
-                      type="button"
-                      className="p-1.5 hover:bg-gray-200 rounded-full transition-colors text-gray-400 hover:text-gray-600"
-                      aria-label="Add emoji"
-                    >
-                      <Smile className="w-5 h-5" />
-                    </button>
-                    <button
-                      type="button"
-                      className="p-1.5 hover:bg-gray-200 rounded-full transition-colors text-gray-400 hover:text-gray-600"
-                      aria-label="Attach file"
-                    >
-                      <Paperclip className="w-5 h-5" />
-                    </button>
-                  </div>
                 </div>
+                <button
+                  type="submit"
+                  disabled={status === 'streaming' || !input?.trim()}
+                  className="w-10 h-10 bg-foreground text-background rounded-xl flex items-center justify-center hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  aria-label="Send message"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
               </form>
             </div>
           </div>
