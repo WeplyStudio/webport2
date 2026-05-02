@@ -135,7 +135,7 @@ export function JoyChat() {
                 />
                 <button
                   type="submit"
-                  disabled={status === 'streaming' || !input.trim()}
+                  disabled={status === 'streaming' || !input?.trim()}
                   className="bg-blue-500 hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg p-2 transition-colors"
                   aria-label="Send message"
                 >
