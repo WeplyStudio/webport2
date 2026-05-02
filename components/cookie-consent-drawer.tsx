@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from '@/components/ui/drawer'
+import { Drawer, DrawerContent } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
 
 const COOKIE_CONSENT_KEY = 'cookie_consent_accepted'
@@ -39,14 +39,14 @@ export function CookieConsentDrawer() {
           {/* Header */}
           <div className="space-y-3 mb-6">
             <div className="w-12 h-1 bg-muted rounded-full mx-auto"></div>
-            <DrawerHeader className="text-center px-0">
-              <DrawerTitle className="text-xl font-semibold text-foreground">
+            <div className="text-center">
+              <h2 className="text-xl font-semibold text-foreground">
                 Cookie Policy
-              </DrawerTitle>
-              <DrawerDescription className="text-muted-foreground text-sm mt-2">
+              </h2>
+              <p className="text-muted-foreground text-sm mt-2">
                 We use cookies to enhance your experience and analyze our traffic. Your privacy is important to us.
-              </DrawerDescription>
-            </DrawerHeader>
+              </p>
+            </div>
           </div>
 
           {/* Content */}
