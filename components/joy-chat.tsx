@@ -36,7 +36,7 @@ export function JoyChat() {
       {/* Floating Button */}
       <button
         onClick={() => setOpen(true)}
-        className={`fixed bottom-6 right-6 z-40 w-14 h-14 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center text-white ${
+        className={`fixed bottom-6 right-6 z-40 w-14 h-14 bg-foreground rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center text-background ${
           open ? 'hidden' : ''
         }`}
         aria-label="Chat with Joy"
@@ -73,8 +73,8 @@ export function JoyChat() {
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
-                <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-full flex items-center justify-center">
-                  <Bot className="w-5 h-5 text-white" />
+                <div className="w-10 h-10 bg-foreground rounded-full flex items-center justify-center">
+                  <Bot className="w-5 h-5 text-background" />
                 </div>
                 <div>
                   <h2 className="text-sm font-semibold text-gray-900">Joy Assistant</h2>
@@ -107,8 +107,8 @@ export function JoyChat() {
                   <div className="flex justify-start">
                     <div className="max-w-[280px]">
                       <div className="flex items-center gap-2 mb-1.5">
-                        <div className="w-5 h-5 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-full flex items-center justify-center">
-                          <Bot className="w-3 h-3 text-white" />
+                        <div className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center">
+                          <Bot className="w-3 h-3 text-background" />
                         </div>
                         <span className="text-xs font-medium text-gray-700">Joy AI</span>
                       </div>
@@ -135,8 +135,8 @@ export function JoyChat() {
                       {message.role === 'assistant' ? (
                         <div className="max-w-[280px]">
                           <div className="flex items-center gap-2 mb-1.5">
-                            <div className="w-5 h-5 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-full flex items-center justify-center">
-                              <Bot className="w-3 h-3 text-white" />
+                            <div className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center">
+                              <Bot className="w-3 h-3 text-background" />
                             </div>
                             <span className="text-xs font-medium text-gray-700">Joy AI</span>
                           </div>
@@ -167,8 +167,8 @@ export function JoyChat() {
                     <div className="flex justify-start">
                       <div className="max-w-[280px]">
                         <div className="flex items-center gap-2 mb-1.5">
-                          <div className="w-5 h-5 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-full flex items-center justify-center">
-                            <Bot className="w-3 h-3 text-white" />
+                          <div className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center">
+                            <Bot className="w-3 h-3 text-background" />
                           </div>
                           <span className="text-xs font-medium text-gray-700">Joy AI</span>
                         </div>
