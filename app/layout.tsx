@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { CookieConsentDrawer } from '@/components/cookie-consent-drawer'
 import './globals.css'
 
 const inter = Inter({ 
@@ -33,6 +34,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <CookieConsentDrawer />
         </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
         <script src="https://js.puter.com/v2/" async></script>
