@@ -17,6 +17,7 @@ interface TicketData {
   guest_name: string
   guest_email: string
   subject: string
+  status: 'open' | 'closed'
 }
 
 const FAQ_ITEMS = [
@@ -58,11 +59,23 @@ export function JoyChat() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
-  // Poll for new messages when in ticket chat mode
+  // Poll for new messages and ticket status when in ticket chat mode
   useEffect(() => {
     if (mode !== 'ticket-chat' || !ticketData) return
 
-    const fetchMessages = async () => {
+    const fetchMessagesAndStatus = async () => {
+      // Fetch ticket status
+      const { data: ticketStatus } = await supabase
+        .from('support_tickets')
+        .select('status')
+        .eq('id', ticketData.id)
+        .single()
+
+      if (ticketStatus && ticketStatus.status !== ticketData.status) {
+        setTicketData({ ...ticketData, status: ticketStatus.status })
+      }
+
+      // Fetch messages
       const { data } = await supabase
         .from('ticket_messages')
         .select('*')
@@ -78,8 +91,8 @@ export function JoyChat() {
       }
     }
 
-    fetchMessages()
-    const interval = setInterval(fetchMessages, 3000)
+    fetchMessagesAndStatus()
+    const interval = setInterval(fetchMessagesAndStatus, 3000)
     return () => clearInterval(interval)
   }, [mode, ticketData, supabase])
 
@@ -113,7 +126,7 @@ export function JoyChat() {
 
       if (error) throw error
 
-      setTicketData(data)
+      setTicketData({ ...data, status: 'open' })
       setMode('ticket-chat')
       setMessages([{
         id: 'welcome',
@@ -392,7 +405,7 @@ export function JoyChat() {
             </div>
 
             {/* Input Area - Only show in ticket chat mode */}
-            {mode === 'ticket-chat' && (
+            {mode === 'ticket-chat' && ticketData?.status === 'open' && (
               <div className="bg-white border-t border-gray-100 p-4">
                 <form onSubmit={handleSendMessage} className="flex items-center gap-3">
                   <div className="flex-1 flex items-center bg-gray-50 rounded-xl border border-gray-200 px-4 py-2.5 focus-within:border-gray-400 focus-within:ring-2 focus-within:ring-gray-100 transition-all">
@@ -414,6 +427,16 @@ export function JoyChat() {
                     <Send className="w-4 h-4" />
                   </button>
                 </form>
+              </div>
+            )}
+
+            {/* Closed Ticket Notice */}
+            {mode === 'ticket-chat' && ticketData?.status === 'closed' && (
+              <div className="bg-gray-50 border-t border-gray-100 p-4">
+                <div className="flex items-center justify-center gap-2 text-gray-500">
+                  <X className="w-4 h-4" />
+                  <span className="text-sm">Tiket ini sudah ditutup oleh admin</span>
+                </div>
               </div>
             )}
           </div>
