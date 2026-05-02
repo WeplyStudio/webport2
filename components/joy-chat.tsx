@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useChat } from '@ai-sdk/react'
 import { DefaultChatTransport } from 'ai'
-import { Send, X, MessageCircle } from 'lucide-react'
+import { ChevronLeft, Maximize2, Smile, Paperclip, MessageCircle, Bot } from 'lucide-react'
 
 export function JoyChat() {
   const [open, setOpen] = useState(false)
@@ -24,12 +24,18 @@ export function JoyChat() {
 
   if (!mounted) return null
 
+  const today = new Date().toLocaleDateString('en-US', { 
+    month: 'short', 
+    day: 'numeric',
+    year: 'numeric'
+  })
+
   return (
     <>
       {/* Floating Button */}
       <button
         onClick={() => setOpen(true)}
-        className={`fixed bottom-6 right-6 z-40 w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center text-white ${
+        className={`fixed bottom-6 right-6 z-40 w-14 h-14 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center text-white ${
           open ? 'hidden' : ''
         }`}
         aria-label="Chat with Joy"
@@ -42,7 +48,7 @@ export function JoyChat() {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
             onClick={() => setOpen(false)}
             style={{
               animation: 'fadeIn 0.3s ease-out',
@@ -51,38 +57,73 @@ export function JoyChat() {
 
           {/* Chat Window */}
           <div
-            className="fixed bottom-0 right-0 z-50 w-full md:w-96 h-[90vh] md:h-[600px] bg-background border-l border-border rounded-t-3xl md:rounded-3xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-3rem)] h-[600px] max-h-[calc(100vh-3rem)] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-100"
             style={{
               animation: 'slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
             }}
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 flex items-center justify-between text-white">
-              <div>
-                <h2 className="text-lg font-bold">Joy</h2>
-                <p className="text-xs opacity-90">Your personal assistant</p>
+            <div className="bg-white px-4 py-3 flex items-center justify-between border-b border-gray-100">
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setOpen(false)}
+                  className="p-1 hover:bg-gray-100 rounded-full transition-colors text-gray-600"
+                  aria-label="Close chat"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-full flex items-center justify-center">
+                  <Bot className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-sm font-semibold text-gray-900">Joy Assistant</h2>
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                    <p className="text-xs text-gray-500">Online - Ready to help</p>
+                  </div>
+                </div>
               </div>
               <button
-                onClick={() => setOpen(false)}
-                className="p-1 hover:bg-white/20 rounded-full transition-colors"
-                aria-label="Close chat"
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-600"
+                aria-label="Expand chat"
               >
-                <X className="w-5 h-5" />
+                <Maximize2 className="w-4 h-4" />
               </button>
             </div>
 
             {/* Messages Container */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 overflow-y-auto px-4 py-4 bg-gradient-to-b from-gray-50/50 to-white">
+              {/* Date Separator */}
+              <div className="flex justify-center mb-6">
+                <span className="text-xs text-gray-400 bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">
+                  Today
+                </span>
+              </div>
+
               {messages.length === 0 ? (
-                <div className="h-full flex flex-col items-center justify-center text-center">
-                  <MessageCircle className="w-12 h-12 text-muted-foreground mb-3 opacity-50" />
-                  <h3 className="font-semibold text-foreground">Hi! I'm Joy</h3>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Ask me anything about this website or how I can help you!
-                  </p>
+                <div className="space-y-4">
+                  {/* Welcome Message */}
+                  <div className="flex justify-start">
+                    <div className="max-w-[280px]">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <div className="w-5 h-5 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-full flex items-center justify-center">
+                          <Bot className="w-3 h-3 text-white" />
+                        </div>
+                        <span className="text-xs font-medium text-gray-700">Joy AI</span>
+                      </div>
+                      <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm border border-gray-100">
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          Hi there! 👋
+                        </p>
+                        <p className="text-sm text-gray-700 leading-relaxed mt-1">
+                          I&apos;m Joy, your personal assistant. What can I help you with today?
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ) : (
-                <>
+                <div className="space-y-4">
                   {messages.map((message) => (
                     <div
                       key={message.id}
@@ -90,57 +131,90 @@ export function JoyChat() {
                         message.role === 'user' ? 'justify-end' : 'justify-start'
                       }`}
                     >
-                      <div
-                        className={`max-w-xs px-4 py-2 rounded-lg ${
-                          message.role === 'user'
-                            ? 'bg-blue-500 text-white rounded-br-none'
-                            : 'bg-muted text-foreground rounded-bl-none'
-                        }`}
-                      >
-                        <p className="text-sm">
-                          {message.parts
-                            ?.filter((p) => p.type === 'text')
-                            .map((p) => (p as any).text)
-                            .join('') || message.content}
-                        </p>
-                      </div>
+                      {message.role === 'assistant' ? (
+                        <div className="max-w-[280px]">
+                          <div className="flex items-center gap-2 mb-1.5">
+                            <div className="w-5 h-5 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-full flex items-center justify-center">
+                              <Bot className="w-3 h-3 text-white" />
+                            </div>
+                            <span className="text-xs font-medium text-gray-700">Joy AI</span>
+                          </div>
+                          <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm border border-gray-100">
+                            <p className="text-sm text-gray-700 leading-relaxed">
+                              {message.parts
+                                ?.filter((p) => p.type === 'text')
+                                .map((p) => (p as { type: 'text'; text: string }).text)
+                                .join('') || message.content}
+                            </p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="max-w-[280px]">
+                          <div className="bg-gray-900 text-white px-4 py-3 rounded-2xl rounded-tr-sm shadow-sm">
+                            <p className="text-sm leading-relaxed">
+                              {message.parts
+                                ?.filter((p) => p.type === 'text')
+                                .map((p) => (p as { type: 'text'; text: string }).text)
+                                .join('') || message.content}
+                            </p>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ))}
                   {status === 'streaming' && (
                     <div className="flex justify-start">
-                      <div className="bg-muted text-foreground px-4 py-2 rounded-lg rounded-bl-none">
-                        <div className="flex gap-1">
-                          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
-                          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-100" />
-                          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-200" />
+                      <div className="max-w-[280px]">
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <div className="w-5 h-5 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-full flex items-center justify-center">
+                            <Bot className="w-3 h-3 text-white" />
+                          </div>
+                          <span className="text-xs font-medium text-gray-700">Joy AI</span>
+                        </div>
+                        <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm border border-gray-100">
+                          <div className="flex gap-1.5">
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                          </div>
                         </div>
                       </div>
                     </div>
                   )}
                   <div ref={messagesEndRef} />
-                </>
+                </div>
               )}
             </div>
 
             {/* Input Area */}
-            <div className="border-t border-border p-4">
-              <form onSubmit={handleSubmit} className="flex gap-2">
-                <input
-                  type="text"
-                  value={input}
-                  onChange={handleInputChange}
-                  placeholder="Ask me anything..."
-                  className="flex-1 bg-muted text-foreground placeholder-muted-foreground rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  disabled={status === 'streaming'}
-                />
-                <button
-                  type="submit"
-                  disabled={status === 'streaming' || !input?.trim()}
-                  className="bg-blue-500 hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg p-2 transition-colors"
-                  aria-label="Send message"
-                >
-                  <Send className="w-5 h-5" />
-                </button>
+            <div className="bg-white border-t border-gray-100 p-4">
+              <form onSubmit={handleSubmit} className="flex items-center gap-2">
+                <div className="flex-1 flex items-center bg-gray-50 rounded-xl border border-gray-200 px-4 py-2.5 focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-100 transition-all">
+                  <input
+                    type="text"
+                    value={input}
+                    onChange={handleInputChange}
+                    placeholder="Ask question..."
+                    className="flex-1 bg-transparent text-gray-700 placeholder-gray-400 text-sm focus:outline-none"
+                    disabled={status === 'streaming'}
+                  />
+                  <div className="flex items-center gap-1 ml-2">
+                    <button
+                      type="button"
+                      className="p-1.5 hover:bg-gray-200 rounded-full transition-colors text-gray-400 hover:text-gray-600"
+                      aria-label="Add emoji"
+                    >
+                      <Smile className="w-5 h-5" />
+                    </button>
+                    <button
+                      type="button"
+                      className="p-1.5 hover:bg-gray-200 rounded-full transition-colors text-gray-400 hover:text-gray-600"
+                      aria-label="Attach file"
+                    >
+                      <Paperclip className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
               </form>
             </div>
           </div>
@@ -159,21 +233,13 @@ export function JoyChat() {
 
         @keyframes slideUp {
           from {
-            transform: translateY(100%);
+            transform: translateY(20px);
             opacity: 0;
           }
           to {
             transform: translateY(0);
             opacity: 1;
           }
-        }
-
-        .delay-100 {
-          animation-delay: 0.1s;
-        }
-
-        .delay-200 {
-          animation-delay: 0.2s;
         }
       `}</style>
     </>
