@@ -5,7 +5,7 @@ export async function POST(req: Request) {
   const { messages } = await req.json()
 
   const result = streamText({
-    model: google('gemini-2.0-flash-lite'),
+    model: google('gemini-2.5-flash-preview-04-17'),
     system: `You are Joy, a friendly and helpful personal assistant on this website. You are knowledgeable about everything on this website and can answer questions about its features, content, and functionality. 
 
 Your personality is:
