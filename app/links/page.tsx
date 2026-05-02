@@ -8,66 +8,69 @@ const links = [
   {
     id: 1,
     title: 'Portfolio',
-    description: 'Check out my latest projects and case studies',
-    url: 'https://jasonn.doc',
+    description: 'View all my projects',
+    url: '#',
     icon: '🎨',
-    color: 'from-blue-500 to-cyan-500'
+    gradient: 'from-blue-500 to-purple-600',
+    featured: true
   },
   {
     id: 2,
     title: 'LinkedIn',
-    description: 'Connect with me professionally',
+    description: 'Connect professionally',
     url: 'https://linkedin.com',
     icon: '💼',
-    color: 'from-blue-700 to-blue-500'
+    gradient: 'from-blue-600 to-blue-400',
+    featured: true
   },
   {
     id: 3,
     title: 'GitHub',
-    description: 'Explore my open source projects',
+    description: 'View my code',
     url: 'https://github.com',
     icon: '💻',
-    color: 'from-gray-700 to-gray-900'
+    gradient: 'from-gray-800 to-gray-600',
+    featured: true
   },
   {
     id: 4,
     title: 'Twitter/X',
-    description: 'Follow me for web development tips',
+    description: 'Follow me',
     url: 'https://twitter.com',
     icon: '𝕏',
-    color: 'from-black to-gray-800'
+    gradient: 'from-black to-gray-800'
   },
   {
     id: 5,
     title: 'Instagram',
-    description: 'Behind the scenes and design inspiration',
+    description: 'Behind the scenes',
     url: 'https://instagram.com',
     icon: '📸',
-    color: 'from-pink-500 to-purple-500'
+    gradient: 'from-pink-500 via-purple-500 to-blue-500'
   },
   {
     id: 6,
     title: 'Dribbble',
-    description: 'Design portfolio and inspiration',
+    description: 'Design work',
     url: 'https://dribbble.com',
-    icon: '🎭',
-    color: 'from-pink-400 to-red-500'
+    icon: '🎯',
+    gradient: 'from-pink-400 to-red-500'
   },
   {
     id: 7,
     title: 'Email',
-    description: 'hello@itsjason.my.id',
-    url: 'mailto:hello@itsjason.my.id',
+    description: 'Get in touch',
+    url: 'mailto:hello@jasonndoc.com',
     icon: '✉️',
-    color: 'from-orange-500 to-red-500'
+    gradient: 'from-orange-400 to-red-500'
   },
   {
     id: 8,
     title: 'Book a Call',
-    description: 'Schedule a consultation with me',
-    url: 'https://calendly.com',
-    icon: '📅',
-    color: 'from-green-500 to-emerald-500'
+    description: 'Schedule meeting',
+    url: '#',
+    icon: '📞',
+    gradient: 'from-green-400 to-emerald-500'
   }
 ]
 
@@ -75,78 +78,177 @@ export default function LinksPage() {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center bg-background/80 backdrop-blur-md border-b border-foreground/5">
-        <Link href="/" className="text-sm md:text-base font-bold tracking-tighter hover:opacity-50 transition">
-          Jasonn.doc™
-        </Link>
-        <ThemeToggle />
-      </header>
-
-      {/* Main Content */}
-      <div className="pt-32 pb-12 px-4 md:px-6">
-        <div className="max-w-2xl mx-auto">
-          {/* Profile Section */}
-          <div className="text-center mb-16">
-            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 p-0.5">
-              <div className="w-full h-full rounded-full bg-background flex items-center justify-center text-5xl font-bold">
-                JD
-              </div>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter mb-3 text-foreground">
-              Jason
-            </h1>
-            <p className="text-muted-foreground text-lg mb-2">
-              Digital Architect & Web Developer
-            </p>
-            <p className="text-muted-foreground text-sm max-w-md mx-auto">
-              Creating harmony between complex code and pristine interfaces. Let's build something amazing together.
-            </p>
-          </div>
-
-          {/* Links Grid */}
-          <div className="space-y-3 mb-12">
-            {links.map((link) => (
-              <a
-                key={link.id}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                onMouseEnter={() => setHoveredId(link.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                className="group relative block"
-              >
-                <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${link.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-                <div className="relative bg-secondary dark:bg-neutral-900 hover:bg-secondary dark:hover:bg-neutral-800 border border-foreground/10 group-hover:border-transparent rounded-xl px-6 py-4 md:py-5 flex items-center gap-4 transition-all duration-300 cursor-pointer">
-                  <div className="text-3xl md:text-4xl">{link.icon}</div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg md:text-xl font-bold text-foreground group-hover:text-foreground transition-colors">
-                      {link.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm truncate group-hover:text-muted-foreground transition-colors">
-                      {link.description}
-                    </p>
-                  </div>
-                  <div className="text-xl md:text-2xl opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
-                    →
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-
-          {/* Footer */}
-          <div className="text-center border-t border-foreground/5 pt-8">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
-              Connect with me
-            </p>
-            <p className="text-muted-foreground text-sm">
-              Choose your preferred platform above to reach out or collaborate on a project.
-            </p>
+      <header className="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-foreground/5">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="text-sm md:text-base font-bold tracking-tighter hover:opacity-50 transition">
+            Jasonn.doc™
+          </Link>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Link href="/" className="text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition">
+              Home
+            </Link>
           </div>
         </div>
-      </div>
+      </header>
+
+      <main className="pt-24 pb-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-12">
+            {/* Left Sidebar - Profile */}
+            <div className="md:col-span-1">
+              <div className="sticky top-28">
+                {/* Avatar */}
+                <div className="w-40 h-40 mx-auto md:mx-0 mb-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1 flex items-center justify-center overflow-hidden">
+                  <div className="w-full h-full rounded-full bg-background flex items-center justify-center text-6xl">
+                    👨‍💻
+                  </div>
+                </div>
+
+                {/* Profile Info */}
+                <h1 className="text-4xl md:text-3xl font-bold tracking-tight mb-3 text-center md:text-left">
+                  Jason
+                </h1>
+                <p className="text-muted-foreground text-sm mb-4 text-center md:text-left leading-relaxed">
+                  Digital Architect & Creative Developer crafting beautiful digital experiences.
+                </p>
+
+                {/* Social Icons */}
+                <div className="flex gap-3 mb-8 justify-center md:justify-start">
+                  <a href="#" className="w-10 h-10 rounded-full bg-blue-500/20 hover:bg-blue-500 flex items-center justify-center transition text-sm font-bold">
+                    f
+                  </a>
+                  <a href="#" className="w-10 h-10 rounded-full bg-blue-400/20 hover:bg-blue-400 flex items-center justify-center transition text-sm font-bold">
+                    𝕏
+                  </a>
+                  <a href="#" className="w-10 h-10 rounded-full bg-pink-500/20 hover:bg-pink-500 flex items-center justify-center transition text-sm font-bold">
+                    📷
+                  </a>
+                  <a href="#" className="w-10 h-10 rounded-full bg-red-500/20 hover:bg-red-500 flex items-center justify-center transition text-sm font-bold">
+                    ▶
+                  </a>
+                </div>
+
+                {/* CTA Button */}
+                <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-4 rounded-xl transition duration-300 text-sm">
+                  Get in Touch
+                </button>
+              </div>
+            </div>
+
+            {/* Main Content */}
+            <div className="md:col-span-2">
+              {/* Featured Section */}
+              <div className="mb-16">
+                <h2 className="text-xs uppercase tracking-[0.6em] text-muted-foreground font-bold mb-6 italic">
+                  Featured Links
+                </h2>
+                <div className="space-y-4">
+                  {links.filter(link => link.featured).map((link) => (
+                    <a
+                      key={link.id}
+                      href={link.url}
+                      onMouseEnter={() => setHoveredId(link.id)}
+                      onMouseLeave={() => setHoveredId(null)}
+                      className={`group relative block overflow-hidden rounded-2xl transition-all duration-300 ${
+                        hoveredId === link.id ? 'shadow-2xl scale-105' : 'shadow-lg hover:shadow-xl'
+                      }`}
+                    >
+                      {/* Gradient Background */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${link.gradient}`} />
+                      
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      {/* Content */}
+                      <div className="relative z-10 p-6">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="text-5xl">{link.icon}</div>
+                          <div className="text-2xl opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300">
+                            →
+                          </div>
+                        </div>
+                        <h3 className="text-2xl font-bold text-white mb-2">{link.title}</h3>
+                        <p className="text-white/90 text-sm">{link.description}</p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* All Links Grid */}
+              <div>
+                <h2 className="text-xs uppercase tracking-[0.6em] text-muted-foreground font-bold mb-6 italic">
+                  All Links
+                </h2>
+                <div className="grid grid-cols-2 gap-4">
+                  {links.map((link) => (
+                    <a
+                      key={link.id}
+                      href={link.url}
+                      onMouseEnter={() => setHoveredId(link.id)}
+                      onMouseLeave={() => setHoveredId(null)}
+                      className={`group relative block overflow-hidden rounded-xl transition-all duration-300 ${
+                        hoveredId === link.id ? 'shadow-xl scale-105' : 'shadow-md hover:shadow-lg'
+                      }`}
+                    >
+                      {/* Gradient Background */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${link.gradient}`} />
+                      
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      {/* Content */}
+                      <div className="relative z-10 p-4">
+                        <div className="text-3xl mb-2">{link.icon}</div>
+                        <h3 className="text-sm font-bold text-white mb-1">{link.title}</h3>
+                        <p className="text-white/80 text-xs line-clamp-1">{link.description}</p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div className="border-t border-foreground/10 mt-20 pt-16">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-3 gap-8 text-center">
+              <div>
+                <div className="text-4xl font-bold text-blue-500 mb-2">400+</div>
+                <p className="text-muted-foreground text-sm">Projects Done</p>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-purple-500 mb-2">100+</div>
+                <p className="text-muted-foreground text-sm">Happy Clients</p>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-emerald-500 mb-2">6+</div>
+                <p className="text-muted-foreground text-sm">Years Experience</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="border-t border-foreground/10 mt-20 pt-12">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <p className="text-muted-foreground text-xs uppercase tracking-[0.3em] mb-3">
+              Let's Connect
+            </p>
+            <a href="mailto:hello@jasonndoc.com" className="text-foreground hover:text-blue-500 font-bold text-lg transition mb-8 inline-block">
+              hello@jasonndoc.com
+            </a>
+            <p className="text-muted-foreground text-xs">
+              © 2026 Jason. All rights reserved.
+            </p>
+          </div>
+        </footer>
+      </main>
     </div>
   )
 }
