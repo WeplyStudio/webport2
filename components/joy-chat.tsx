@@ -1,19 +1,54 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { useChat } from '@ai-sdk/react'
-import { DefaultChatTransport } from 'ai'
-import { ChevronLeft, Maximize2, MessageCircle, Bot, Send } from 'lucide-react'
+import { ChevronLeft, Maximize2, MessageCircle, Bot, Send, X } from 'lucide-react'
+import { createClient } from '@/lib/supabase/client'
+
+type ChatMode = 'faq' | 'ticket-form' | 'ticket-chat'
+
+interface Message {
+  id: string
+  role: 'assistant' | 'user'
+  content: string
+}
+
+interface TicketData {
+  id: string
+  guest_name: string
+  guest_email: string
+  subject: string
+}
+
+const FAQ_ITEMS = [
+  {
+    question: 'Layanan apa saja yang tersedia?',
+    answer: 'Kami menyediakan berbagai layanan termasuk pembuatan website, aplikasi mobile, desain UI/UX, dan konsultasi digital. Setiap layanan dirancang untuk memenuhi kebutuhan bisnis Anda.'
+  },
+  {
+    question: 'Berapa harga layanan?',
+    answer: 'Harga layanan kami bervariasi tergantung kompleksitas proyek. Untuk website sederhana mulai dari Rp 5 juta, dan untuk aplikasi custom mulai dari Rp 15 juta. Hubungi admin untuk penawaran khusus.'
+  },
+  {
+    question: 'Bagaimana cara order?',
+    answer: 'Proses order sangat mudah: 1) Hubungi admin melalui chat ini, 2) Diskusikan kebutuhan proyek Anda, 3) Terima penawaran dan timeline, 4) Lakukan pembayaran DP, 5) Proyek dimulai!'
+  },
+  {
+    question: 'Jam operasional?',
+    answer: 'Kami beroperasi Senin - Jumat pukul 09:00 - 18:00 WIB, dan Sabtu pukul 09:00 - 15:00 WIB. Untuk pertanyaan di luar jam kerja, silakan buat tiket dan admin akan membalas saat jam kerja.'
+  },
+]
 
 export function JoyChat() {
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [mode, setMode] = useState<ChatMode>('faq')
+  const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [ticketData, setTicketData] = useState<TicketData | null>(null)
+  const [ticketForm, setTicketForm] = useState({ name: '', email: '', subject: '' })
   const messagesEndRef = useRef<HTMLDivElement>(null)
-
-  const { messages, sendMessage, status } = useChat({
-    transport: new DefaultChatTransport({ api: '/api/chat' }),
-  })
+  const supabase = createClient()
 
   useEffect(() => {
     setMounted(true)
@@ -23,13 +58,106 @@ export function JoyChat() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
-  if (!mounted) return null
+  // Poll for new messages when in ticket chat mode
+  useEffect(() => {
+    if (mode !== 'ticket-chat' || !ticketData) return
 
-  const today = new Date().toLocaleDateString('en-US', { 
-    month: 'short', 
-    day: 'numeric',
-    year: 'numeric'
-  })
+    const fetchMessages = async () => {
+      const { data } = await supabase
+        .from('ticket_messages')
+        .select('*')
+        .eq('ticket_id', ticketData.id)
+        .order('created_at', { ascending: true })
+
+      if (data) {
+        setMessages(data.map((m) => ({
+          id: m.id,
+          role: m.sender_type === 'guest' ? 'user' : 'assistant',
+          content: m.message
+        })))
+      }
+    }
+
+    fetchMessages()
+    const interval = setInterval(fetchMessages, 3000)
+    return () => clearInterval(interval)
+  }, [mode, ticketData, supabase])
+
+  const handleFAQClick = (faq: typeof FAQ_ITEMS[0]) => {
+    setMessages([
+      { id: 'q-' + Date.now(), role: 'user', content: faq.question },
+      { id: 'a-' + Date.now(), role: 'assistant', content: faq.answer }
+    ])
+  }
+
+  const handleContactAdmin = () => {
+    setMode('ticket-form')
+    setMessages([])
+  }
+
+  const handleCreateTicket = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!ticketForm.name || !ticketForm.email || !ticketForm.subject) return
+
+    setLoading(true)
+    try {
+      const { data, error } = await supabase
+        .from('support_tickets')
+        .insert({
+          guest_name: ticketForm.name,
+          guest_email: ticketForm.email,
+          subject: ticketForm.subject
+        })
+        .select()
+        .single()
+
+      if (error) throw error
+
+      setTicketData(data)
+      setMode('ticket-chat')
+      setMessages([{
+        id: 'welcome',
+        role: 'assistant',
+        content: `Halo ${ticketForm.name}! Tiket Anda telah dibuat dengan subjek "${ticketForm.subject}". Admin akan segera membalas pesan Anda.`
+      }])
+    } catch (error) {
+      console.error('Error creating ticket:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!input.trim() || !ticketData || loading) return
+
+    setLoading(true)
+    try {
+      const { error } = await supabase
+        .from('ticket_messages')
+        .insert({
+          ticket_id: ticketData.id,
+          sender_type: 'guest',
+          message: input.trim()
+        })
+
+      if (error) throw error
+      setInput('')
+    } catch (error) {
+      console.error('Error sending message:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleBackToFAQ = () => {
+    setMode('faq')
+    setMessages([])
+    setTicketData(null)
+    setTicketForm({ name: '', email: '', subject: '' })
+  }
+
+  if (!mounted) return null
 
   return (
     <>
@@ -67,9 +195,9 @@ export function JoyChat() {
             <div className="bg-white px-4 py-3 flex items-center justify-between border-b border-gray-100">
               <div className="flex items-center gap-3">
                 <button
-                  onClick={() => setOpen(false)}
+                  onClick={mode === 'faq' ? () => setOpen(false) : handleBackToFAQ}
                   className="p-1 hover:bg-gray-100 rounded-full transition-colors text-gray-600"
-                  aria-label="Close chat"
+                  aria-label={mode === 'faq' ? 'Close chat' : 'Back to FAQ'}
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
@@ -80,19 +208,22 @@ export function JoyChat() {
                   <h2 className="text-sm font-semibold text-gray-900">Joy Assistant</h2>
                   <div className="flex items-center gap-1.5">
                     <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                    <p className="text-xs text-gray-500">Online - Ready to help</p>
+                    <p className="text-xs text-gray-500">
+                      {mode === 'ticket-chat' ? `Tiket: ${ticketData?.subject}` : 'Online - Ready to help'}
+                    </p>
                   </div>
                 </div>
               </div>
               <button
+                onClick={() => setOpen(false)}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-600"
-                aria-label="Expand chat"
+                aria-label="Close chat"
               >
-                <Maximize2 className="w-4 h-4" />
+                <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Messages Container */}
+            {/* Content Container */}
             <div className="flex-1 overflow-y-auto px-4 py-4 bg-gradient-to-b from-gray-50/50 to-white">
               {/* Date Separator */}
               <div className="flex justify-center mb-6">
@@ -101,7 +232,7 @@ export function JoyChat() {
                 </span>
               </div>
 
-              {messages.length === 0 ? (
+              {mode === 'faq' && (
                 <div className="space-y-4">
                   {/* Welcome Message */}
                   <div className="flex justify-start">
@@ -110,27 +241,129 @@ export function JoyChat() {
                         <div className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center">
                           <Bot className="w-3 h-3 text-background" />
                         </div>
-                        <span className="text-xs font-medium text-gray-700">Joy AI</span>
+                        <span className="text-xs font-medium text-gray-700">Joy</span>
                       </div>
                       <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm border border-gray-100">
                         <p className="text-sm text-gray-700 leading-relaxed">
-                          Hi there! 👋
-                        </p>
-                        <p className="text-sm text-gray-700 leading-relaxed mt-1">
-                          I&apos;m Joy, your personal assistant. What can I help you with today?
+                          Halo! Ada yang bisa saya bantu? Pilih salah satu pertanyaan di bawah atau hubungi admin untuk bantuan lebih lanjut.
                         </p>
                       </div>
                     </div>
                   </div>
+
+                  {/* FAQ Buttons */}
+                  <div className="flex flex-col gap-2 mt-4">
+                    {FAQ_ITEMS.map((faq, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handleFAQClick(faq)}
+                        className="w-full text-left px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all"
+                      >
+                        {faq.question}
+                      </button>
+                    ))}
+                    <button
+                      onClick={handleContactAdmin}
+                      className="w-full text-left px-4 py-3 bg-foreground text-background rounded-xl text-sm font-medium hover:opacity-90 transition-all"
+                    >
+                      Hubungi Admin (Buat Tiket)
+                    </button>
+                  </div>
+
+                  {/* Display FAQ Answer if selected */}
+                  {messages.length > 0 && (
+                    <div className="space-y-4 mt-6 pt-4 border-t border-gray-100">
+                      {messages.map((message) => (
+                        <div
+                          key={message.id}
+                          className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                        >
+                          {message.role === 'assistant' ? (
+                            <div className="max-w-[280px]">
+                              <div className="flex items-center gap-2 mb-1.5">
+                                <div className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center">
+                                  <Bot className="w-3 h-3 text-background" />
+                                </div>
+                                <span className="text-xs font-medium text-gray-700">Joy</span>
+                              </div>
+                              <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm border border-gray-100">
+                                <p className="text-sm text-gray-700 leading-relaxed">{message.content}</p>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="max-w-[280px]">
+                              <div className="bg-foreground text-background px-4 py-3 rounded-2xl rounded-tr-sm shadow-sm">
+                                <p className="text-sm leading-relaxed">{message.content}</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              ) : (
+              )}
+
+              {mode === 'ticket-form' && (
+                <div className="space-y-4">
+                  <div className="flex justify-start">
+                    <div className="max-w-[300px]">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <div className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center">
+                          <Bot className="w-3 h-3 text-background" />
+                        </div>
+                        <span className="text-xs font-medium text-gray-700">Joy</span>
+                      </div>
+                      <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm border border-gray-100">
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          Silakan isi data berikut untuk membuat tiket bantuan. Admin akan segera membalas pesan Anda.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <form onSubmit={handleCreateTicket} className="space-y-3 mt-4">
+                    <input
+                      type="text"
+                      placeholder="Nama Anda"
+                      value={ticketForm.name}
+                      onChange={(e) => setTicketForm({ ...ticketForm, name: e.target.value })}
+                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-2 focus:ring-gray-100"
+                      required
+                    />
+                    <input
+                      type="email"
+                      placeholder="Email Anda"
+                      value={ticketForm.email}
+                      onChange={(e) => setTicketForm({ ...ticketForm, email: e.target.value })}
+                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-2 focus:ring-gray-100"
+                      required
+                    />
+                    <input
+                      type="text"
+                      placeholder="Subjek / Topik pertanyaan"
+                      value={ticketForm.subject}
+                      onChange={(e) => setTicketForm({ ...ticketForm, subject: e.target.value })}
+                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-2 focus:ring-gray-100"
+                      required
+                    />
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full px-4 py-3 bg-foreground text-background rounded-xl text-sm font-medium hover:opacity-90 disabled:opacity-50 transition-all"
+                    >
+                      {loading ? 'Membuat tiket...' : 'Buat Tiket & Mulai Chat'}
+                    </button>
+                  </form>
+                </div>
+              )}
+
+              {mode === 'ticket-chat' && (
                 <div className="space-y-4">
                   {messages.map((message) => (
                     <div
                       key={message.id}
-                      className={`flex ${
-                        message.role === 'user' ? 'justify-end' : 'justify-start'
-                      }`}
+                      className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       {message.role === 'assistant' ? (
                         <div className="max-w-[280px]">
@@ -138,87 +371,51 @@ export function JoyChat() {
                             <div className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center">
                               <Bot className="w-3 h-3 text-background" />
                             </div>
-                            <span className="text-xs font-medium text-gray-700">Joy AI</span>
+                            <span className="text-xs font-medium text-gray-700">Admin</span>
                           </div>
                           <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm border border-gray-100">
-                            <p className="text-sm text-gray-700 leading-relaxed">
-                              {message.parts
-                                ?.filter((p) => p.type === 'text')
-                                .map((p) => (p as { type: 'text'; text: string }).text)
-                                .join('') || message.content}
-                            </p>
+                            <p className="text-sm text-gray-700 leading-relaxed">{message.content}</p>
                           </div>
                         </div>
                       ) : (
                         <div className="max-w-[280px]">
-                          <div className="bg-gray-900 text-white px-4 py-3 rounded-2xl rounded-tr-sm shadow-sm">
-                            <p className="text-sm leading-relaxed">
-                              {message.parts
-                                ?.filter((p) => p.type === 'text')
-                                .map((p) => (p as { type: 'text'; text: string }).text)
-                                .join('') || message.content}
-                            </p>
+                          <div className="bg-foreground text-background px-4 py-3 rounded-2xl rounded-tr-sm shadow-sm">
+                            <p className="text-sm leading-relaxed">{message.content}</p>
                           </div>
                         </div>
                       )}
                     </div>
                   ))}
-                  {status === 'streaming' && (
-                    <div className="flex justify-start">
-                      <div className="max-w-[280px]">
-                        <div className="flex items-center gap-2 mb-1.5">
-                          <div className="w-5 h-5 bg-foreground rounded-full flex items-center justify-center">
-                            <Bot className="w-3 h-3 text-background" />
-                          </div>
-                          <span className="text-xs font-medium text-gray-700">Joy AI</span>
-                        </div>
-                        <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm border border-gray-100">
-                          <div className="flex gap-1.5">
-                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
                   <div ref={messagesEndRef} />
                 </div>
               )}
             </div>
 
-            {/* Input Area */}
-            <div className="bg-white border-t border-gray-100 p-4">
-              <form 
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  if (input.trim() && status !== 'streaming') {
-                    sendMessage({ text: input })
-                    setInput('')
-                  }
-                }} 
-                className="flex items-center gap-3"
-              >
-                <div className="flex-1 flex items-center bg-gray-50 rounded-xl border border-gray-200 px-4 py-2.5 focus-within:border-gray-400 focus-within:ring-2 focus-within:ring-gray-100 transition-all">
-                  <input
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Ask question..."
-                    className="flex-1 bg-transparent text-gray-700 placeholder-gray-400 text-sm focus:outline-none"
-                    disabled={status === 'streaming'}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={status === 'streaming' || !input.trim()}
-                  className="w-10 h-10 bg-foreground text-background rounded-xl flex items-center justify-center hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-                  aria-label="Send message"
-                >
-                  <Send className="w-4 h-4" />
-                </button>
-              </form>
-            </div>
+            {/* Input Area - Only show in ticket chat mode */}
+            {mode === 'ticket-chat' && (
+              <div className="bg-white border-t border-gray-100 p-4">
+                <form onSubmit={handleSendMessage} className="flex items-center gap-3">
+                  <div className="flex-1 flex items-center bg-gray-50 rounded-xl border border-gray-200 px-4 py-2.5 focus-within:border-gray-400 focus-within:ring-2 focus-within:ring-gray-100 transition-all">
+                    <input
+                      type="text"
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      placeholder="Ketik pesan..."
+                      className="flex-1 bg-transparent text-gray-700 placeholder-gray-400 text-sm focus:outline-none"
+                      disabled={loading}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={loading || !input.trim()}
+                    className="w-10 h-10 bg-foreground text-background rounded-xl flex items-center justify-center hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    aria-label="Send message"
+                  >
+                    <Send className="w-4 h-4" />
+                  </button>
+                </form>
+              </div>
+            )}
           </div>
         </>
       )}
