@@ -8,9 +8,10 @@ import { ChevronLeft, Maximize2, MessageCircle, Bot, Send } from 'lucide-react'
 export function JoyChat() {
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [input, setInput] = useState('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
-  const { messages, input, handleInputChange, handleSubmit, status } = useChat({
+  const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({ api: '/api/chat' }),
   })
 
@@ -188,12 +189,21 @@ export function JoyChat() {
 
             {/* Input Area */}
             <div className="bg-white border-t border-gray-100 p-4">
-              <form onSubmit={handleSubmit} className="flex items-center gap-3">
+              <form 
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  if (input.trim() && status !== 'streaming') {
+                    sendMessage({ text: input })
+                    setInput('')
+                  }
+                }} 
+                className="flex items-center gap-3"
+              >
                 <div className="flex-1 flex items-center bg-gray-50 rounded-xl border border-gray-200 px-4 py-2.5 focus-within:border-gray-400 focus-within:ring-2 focus-within:ring-gray-100 transition-all">
                   <input
                     type="text"
                     value={input}
-                    onChange={handleInputChange}
+                    onChange={(e) => setInput(e.target.value)}
                     placeholder="Ask question..."
                     className="flex-1 bg-transparent text-gray-700 placeholder-gray-400 text-sm focus:outline-none"
                     disabled={status === 'streaming'}
@@ -201,7 +211,7 @@ export function JoyChat() {
                 </div>
                 <button
                   type="submit"
-                  disabled={status === 'streaming' || !input?.trim()}
+                  disabled={status === 'streaming' || !input.trim()}
                   className="w-10 h-10 bg-foreground text-background rounded-xl flex items-center justify-center hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                   aria-label="Send message"
                 >
