@@ -8,6 +8,7 @@ const COOKIE_CONSENT_KEY = 'cookie_consent_accepted'
 export function CookieConsentDrawer() {
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [isClosing, setIsClosing] = useState(false)
   const [cookies, setCookies] = useState({
     essential: true,
     analytics: false,
@@ -31,13 +32,21 @@ export function CookieConsentDrawer() {
   }
 
   const handleAccept = () => {
-    localStorage.setItem(COOKIE_CONSENT_KEY, 'true')
-    setOpen(false)
+    setIsClosing(true)
+    setTimeout(() => {
+      localStorage.setItem(COOKIE_CONSENT_KEY, 'true')
+      setOpen(false)
+      setIsClosing(false)
+    }, 300)
   }
 
   const handleReject = () => {
-    localStorage.removeItem(COOKIE_CONSENT_KEY)
-    setOpen(false)
+    setIsClosing(true)
+    setTimeout(() => {
+      localStorage.removeItem(COOKIE_CONSENT_KEY)
+      setOpen(false)
+      setIsClosing(false)
+    }, 300)
   }
 
   if (!mounted || !open) return null
@@ -49,7 +58,7 @@ export function CookieConsentDrawer() {
         className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm transition-opacity duration-300"
         onClick={handleReject}
         style={{
-          animation: 'fadeIn 0.3s ease-out',
+          animation: isClosing ? 'fadeOut 0.3s ease-in forwards' : 'fadeIn 0.3s ease-out',
         }}
       />
 
@@ -57,7 +66,7 @@ export function CookieConsentDrawer() {
       <div
         className="fixed bottom-0 left-0 right-0 z-50 flex justify-center px-4 py-6"
         style={{
-          animation: 'slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          animation: isClosing ? 'slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards' : 'slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
         }}
       >
         <div className="w-full max-w-md">
@@ -173,6 +182,15 @@ export function CookieConsentDrawer() {
           }
         }
 
+        @keyframes fadeOut {
+          from {
+            opacity: 1;
+          }
+          to {
+            opacity: 0;
+          }
+        }
+
         @keyframes slideUp {
           from {
             transform: translateY(100%);
@@ -181,6 +199,17 @@ export function CookieConsentDrawer() {
           to {
             transform: translateY(0);
             opacity: 1;
+          }
+        }
+
+        @keyframes slideDown {
+          from {
+            transform: translateY(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateY(100%);
+            opacity: 0;
           }
         }
       `}</style>
