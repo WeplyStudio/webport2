@@ -33,30 +33,41 @@ const pricingPlans: { name: string; type: string; description: string; prices: P
   },
 ]
 
-function PriceDisplay({ price, isYearly }: { price: PriceTicker; isYearly: boolean }) {
+function PriceDisplay({ price, isYearly, currency = "$", showKSuffix = false }: { price: PriceTicker; isYearly: boolean; currency?: string; showKSuffix?: boolean }) {
   const value = isYearly ? price.yearly : price.monthly
-  const digits = value.toString().split("")
+  let displayValue = value.toString()
+  
+  if (showKSuffix) {
+    displayValue = displayValue.slice(0, -1) + "K"
+  }
+  
+  const digits = displayValue.split("")
 
   return (
     <div className="flex items-baseline gap-1">
-      <span className="text-neutral-400 text-xl md:text-2xl font-light">$</span>
+      <span className="text-neutral-400 text-xl md:text-2xl font-light">{currency}</span>
       <div className="price-ticker flex font-black text-5xl md:text-7xl tracking-tighter">
-        {digits.map((digit, i) => (
-          <div key={i} className="digit-container">
-            <div
-              className="digit-strip"
-              style={{
-                transform: `translateY(-${parseInt(digit) * 1}em)`,
-                transition: `transform 0.8s cubic-bezier(0.7, 0, 0.3, 1) ${i * 0.1}s`,
-              }}
-            >
-              {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
-                <span key={n}>{n}</span>
-              ))}
+        {digits.map((digit, i) => {
+          if (digit === "K") {
+            return <span key={i} className="text-neutral-600 text-lg md:text-2xl self-end ml-0.5">{digit}</span>
+          }
+          return (
+            <div key={i} className="digit-container">
+              <div
+                className="digit-strip"
+                style={{
+                  transform: `translateY(-${parseInt(digit) * 1}em)`,
+                  transition: `transform 0.8s cubic-bezier(0.7, 0, 0.3, 1) ${i * 0.1}s`,
+                }}
+              >
+                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+                  <span key={n}>{n}</span>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
-        {digits.length > 3 && (
+          )
+        })}
+        {digits.length > 3 && !showKSuffix && (
           <span className="text-neutral-400">,</span>
         )}
       </div>
@@ -194,7 +205,7 @@ export function PricingSection() {
                 </p>
 
                 <div className={`mb-8 md:mb-12 ${index === 1 ? "text-foreground dark:text-black" : "text-foreground"}`}>
-                  <PriceDisplay price={plan.prices} isYearly={isYearly} />
+                  <PriceDisplay price={plan.prices} isYearly={isYearly} currency={index === 2 ? "IDR" : "$"} showKSuffix={index === 2} />
                 </div>
 
                 <ul className="space-y-3 md:space-y-4 mb-10 md:mb-16">
