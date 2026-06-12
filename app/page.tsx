@@ -9,7 +9,6 @@ import { HeroSection } from "@/components/sections/hero-section"
 import { AboutSection } from "@/components/sections/about-section"
 import { OfferingsSection } from "@/components/sections/offerings-section"
 import { ServicesSection } from "@/components/sections/services-section"
-import { PricingSection } from "@/components/sections/pricing-section"
 import { ProcessSection } from "@/components/sections/process-section"
 import { ContactFormSection } from "@/components/sections/contact-form-section"
 import { FAQSection } from "@/components/sections/faq-section"
@@ -60,7 +59,6 @@ export default function Home() {
         <AboutSection />
         <OfferingsSection />
         <ServicesSection />
-        <PricingSection />
         <ProcessSection />
         <ContactFormSection />
         <FAQSection />
