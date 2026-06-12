@@ -3,6 +3,12 @@ import { cookies } from 'next/headers'
 
 export async function POST() {
   const cookieStore = await cookies()
-  cookieStore.delete('admin_token')
+  cookieStore.set('admin_token', '', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+    maxAge: 0,
+    path: '/',
+  })
   return NextResponse.json({ success: true })
 }
