@@ -129,7 +129,7 @@ export function ServicesSection() {
               </div>
               <h5 className="text-5xl md:text-[7vw] font-bold tracking-tighter max-w-4xl leading-[0.9]">
                 Design that <br />{" "}
-                <span className="serif-italic font-light italic text-blue-600">Works.</span>
+                <span className="serif-italic font-light italic text-[#FF6B35]">Works.</span>
               </h5>
             </div>
 

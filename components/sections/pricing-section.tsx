@@ -103,7 +103,7 @@ export function PricingSection() {
       className="py-24 md:py-20 bg-background border-t border-foreground/5 relative overflow-hidden"
     >
       {/* Background Decor */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-600/5 blur-[150px] rounded-full pointer-events-none"></div>
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#FF6B35]/5 blur-[150px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[1400px] mx-auto">
         {/* Header */}
@@ -139,7 +139,7 @@ export function PricingSection() {
                   className="w-5 h-5 md:w-6 md:h-6 rounded-full transition-all duration-500 ease-[cubic-bezier(0.7,0,0.3,1)]"
                   style={{
                     transform: isYearly ? "translateX(28px)" : "translateX(0)",
-                    backgroundColor: isYearly ? "#3b82f6" : "var(--foreground)",
+                    backgroundColor: isYearly ? "#FF6B35" : "var(--foreground)",
                   }}
                 ></div>
               </button>
@@ -151,8 +151,8 @@ export function PricingSection() {
                 Yearly
               </span>
             </div>
-            <div className="px-3 py-1 bg-blue-600/10 border border-blue-500/20 rounded-full">
-              <span className="text-[8px] font-black text-blue-500 uppercase tracking-widest italic">
+            <div className="px-3 py-1 bg-[#FF6B35]/10 border border-[#FF6B35]/20 rounded-full">
+              <span className="text-[8px] font-black text-[#FF6B35] uppercase tracking-widest italic">
                 Save 20% with Yearly
               </span>
             </div>
@@ -174,7 +174,7 @@ export function PricingSection() {
               }`}
             >
               {index === 1 && (
-                <div className="absolute top-8 right-8 px-3 py-1.5 bg-blue-600 rounded-full">
+                <div className="absolute top-8 right-8 px-3 py-1.5 bg-[#FF6B35] rounded-full">
                   <span className="text-[7px] md:text-[8px] font-black text-white uppercase tracking-widest">
                     Most Popular
                   </span>
@@ -216,7 +216,7 @@ export function PricingSection() {
                         index === 1 ? "text-muted-foreground dark:text-neutral-600" : "text-muted-foreground"
                       }`}
                     >
-                      <span className={index === 1 ? "text-blue-600 font-bold" : "text-blue-500 font-bold"}>
+                      <span className={index === 1 ? "text-[#FF6B35] font-bold" : "text-[#FF6B35] font-bold"}>
                         ✓
                       </span>{" "}
                       {feature}
@@ -228,7 +228,7 @@ export function PricingSection() {
               <button
                 className={`w-full py-4 md:py-5 rounded-xl md:rounded-2xl text-[9px] font-bold uppercase tracking-[0.3em] transition-all ${
                   index === 1
-                    ? "bg-foreground dark:bg-black text-background dark:text-white hover:bg-blue-600 hover:text-white shadow-xl"
+                    ? "bg-foreground dark:bg-black text-background dark:text-white hover:bg-[#FF6B35] hover:text-white shadow-xl"
                     : "bg-secondary dark:bg-neutral-900 border border-foreground/5 text-foreground hover:bg-foreground hover:text-background"
                 }`}
               >

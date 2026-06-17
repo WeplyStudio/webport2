@@ -78,7 +78,7 @@ export function CTASection() {
         {/* Interactive Ambient Glow */}
         <div
           ref={glowRef}
-          className="absolute pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000 w-[600px] h-[600px] bg-blue-600/20 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2 z-0"
+          className="absolute pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000 w-[600px] h-[600px] bg-[#FF6B35]/20 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2 z-0"
         ></div>
 
         <div className="relative z-10">
@@ -87,7 +87,7 @@ export function CTASection() {
             <h2 className="text-[8vw] md:text-[5vw] font-bold tracking-tighter leading-[1.1] max-w-5xl mx-auto reveal-on-scroll">
               Curious how I can boost your{" "}
               <span className="relative inline-block">
-                <span className="serif-italic font-light text-blue-400 italic">conversion</span>
+                <span className="serif-italic font-light text-[#FF6B35] italic">conversion</span>
               </span>{" "}
               and product quality?
             </h2>
@@ -96,7 +96,7 @@ export function CTASection() {
           {/* The Hyper-Button */}
           <div className="flex flex-col items-center gap-8 mt-16 reveal-on-scroll">
             <div ref={buttonRef} className="magnetic-wrap">
-              <button className="group/btn relative flex items-center gap-4 bg-blue-600 hover:bg-blue-500 text-white px-8 py-5 rounded-2xl transition-all duration-500 active:scale-95 shadow-[0_0_40px_rgba(37,99,235,0.3)]">
+              <button className="group/btn relative flex items-center gap-4 bg-[#FF6B35] hover:bg-[#E85A28] text-white px-8 py-5 rounded-2xl transition-all duration-500 active:scale-95 shadow-[0_0_40px_rgba(255,107,53,0.3)]">
                 {/* Avatar Stack */}
                 <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-white/20">
                   <div className="w-full h-full bg-neutral-800 flex items-center justify-center text-[10px] font-bold">
@@ -129,7 +129,7 @@ export function CTASection() {
             </p>
             <a
               href="mailto:jason@archive.com"
-              className="text-2xl md:text-3xl font-medium tracking-tight hover:text-blue-400 transition-colors duration-500 border-b border-transparent hover:border-blue-400/30 pb-2"
+              className="text-2xl md:text-3xl font-medium tracking-tight hover:text-[#FF6B35] transition-colors duration-500 border-b border-transparent hover:border-[#FF6B35]/30 pb-2"
             >
               hello@itsjason.my.id
             </a>

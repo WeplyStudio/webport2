@@ -110,7 +110,7 @@ export function ProcessSection() {
             >
               {phase.variant !== "light" && (
                 <div
-                  className={`absolute w-64 h-64 bg-blue-600/${phase.number === "01" ? "10" : "5"} blur-[100px] rounded-full group-hover:bg-blue-600/${phase.number === "01" ? "20" : "15"} transition-all duration-700 ${
+                  className={`absolute w-64 h-64 bg-[#FF6B35]/${phase.number === "01" ? "10" : "5"} blur-[100px] rounded-full group-hover:bg-[#FF6B35]/${phase.number === "01" ? "20" : "15"} transition-all duration-700 ${
                     phase.number === "01" ? "-top-20 -right-20" : "-bottom-20 -left-20"
                   }`}
                 ></div>
@@ -119,7 +119,7 @@ export function ProcessSection() {
               <div className="relative z-10">
                 <span
                   className={`text-[9px] font-bold uppercase tracking-[0.4em] mb-4 block ${
-                    phase.variant === "light" ? "text-muted-foreground dark:text-neutral-400" : "text-blue-500"
+                    phase.variant === "light" ? "text-muted-foreground dark:text-neutral-400" : "text-[#FF6B35]"
                   }`}
                 >
                   Phase {phase.number}
@@ -143,7 +143,7 @@ export function ProcessSection() {
                 </p>
                 <div
                   className={`h-[1px] w-10 group-hover:w-20 transition-all duration-700 ${
-                    phase.variant === "light" ? "bg-foreground dark:bg-black" : "bg-blue-600"
+                    phase.variant === "light" ? "bg-foreground dark:bg-black" : "bg-[#FF6B35]"
                   }`}
                 ></div>
               </div>

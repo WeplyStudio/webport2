@@ -124,13 +124,13 @@ export function OfferingsSection() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-end">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-blue-500">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#FF6B35]">
                       Jason&apos;s Conversion Design
                     </span>
-                    <span className="text-2xl font-bold tracking-tighter text-blue-600">4-8%</span>
+                    <span className="text-2xl font-bold tracking-tighter text-[#FF6B35]">4-8%</span>
                   </div>
                   <div className="h-1.5 w-full bg-secondary dark:bg-neutral-100 rounded-full overflow-hidden">
-                    <div className="h-full w-0 bg-blue-600 bar-reveal" data-width="65%"></div>
+                    <div className="h-full w-0 bg-[#FF6B35] bar-reveal" data-width="65%"></div>
                   </div>
                 </div>
               </div>
@@ -155,7 +155,7 @@ export function OfferingsSection() {
                     className="chart-path"
                     d="M0,50 Q40,45 80,30 T160,10"
                     fill="none"
-                    stroke="#3b82f6"
+                    stroke="#FF6B35"
                     strokeWidth="3"
                     strokeLinecap="round"
                   />
@@ -164,7 +164,7 @@ export function OfferingsSection() {
                     cx="160"
                     cy="10"
                     r="4"
-                    fill="#3b82f6"
+                    fill="#FF6B35"
                     opacity="0"
                   />
                   <rect
@@ -173,7 +173,7 @@ export function OfferingsSection() {
                     width="40"
                     height="15"
                     rx="4"
-                    fill="#3b82f6"
+                    fill="#FF6B35"
                     className="chart-label opacity-0"
                   />
                 </svg>
