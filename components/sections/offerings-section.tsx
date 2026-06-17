@@ -78,29 +78,29 @@ export function OfferingsSection() {
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {/* Card 1: Experience & Industry */}
-          <div className="feature-card relative group p-8 md:p-12 rounded-[2.5rem] bg-secondary dark:bg-[#0A0A0A] border border-foreground/5 overflow-hidden min-h-[500px] flex flex-col justify-between">
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-600/10 blur-[100px] group-hover:bg-blue-600/20 transition-colors duration-700"></div>
+          <div className="feature-card relative group p-8 md:p-12 rounded-[2.5rem] bg-[#FF6B35] dark:bg-[#FF6B35] border border-foreground/5 overflow-hidden min-h-[500px] flex flex-col justify-between text-white">
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 blur-[100px] group-hover:bg-white/20 transition-colors duration-700"></div>
 
             <div className="relative z-10">
               <div className="flex flex-wrap gap-3 mb-12">
-                <span className="px-4 py-2 rounded-full border border-foreground/10 text-[10px] uppercase tracking-widest font-bold text-muted-foreground group-hover:border-blue-500/50 transition-colors">
+                <span className="px-4 py-2 rounded-full border border-white/30 text-[10px] uppercase tracking-widest font-bold text-white group-hover:border-white/70 transition-colors">
                   SaaS Startups
                 </span>
-                <span className="px-4 py-2 rounded-full border border-foreground/10 text-[10px] uppercase tracking-widest font-bold text-muted-foreground group-hover:border-blue-500/50 transition-colors">
+                <span className="px-4 py-2 rounded-full border border-white/30 text-[10px] uppercase tracking-widest font-bold text-white group-hover:border-white/70 transition-colors">
                   E-commerce
                 </span>
-                <span className="px-4 py-2 rounded-full border border-foreground/10 text-[10px] uppercase tracking-widest font-bold text-muted-foreground group-hover:border-blue-500/50 transition-colors">
+                <span className="px-4 py-2 rounded-full border border-white/30 text-[10px] uppercase tracking-widest font-bold text-white group-hover:border-white/70 transition-colors">
                   Fintech
                 </span>
               </div>
-              <h4 className="text-3xl md:text-4xl font-bold tracking-tight leading-snug text-foreground">
-                <span className="text-blue-500">6 years</span> of experience building{" "}
-                <span className="serif-italic font-light italic">cross-industry solutions.</span>
+              <h4 className="text-3xl md:text-4xl font-bold tracking-tight leading-snug text-white">
+                <span className="text-white/90">6 years</span> of experience building{" "}
+                <span className="serif-italic font-light italic text-white/80">cross-industry solutions.</span>
               </h4>
             </div>
 
             <div className="relative z-10">
-              <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
+              <p className="text-white/90 text-sm leading-relaxed max-w-xs">
                 We&apos;ve handled 400+ projects across industries, from banking to interactive LIVE
                 platforms.
               </p>
@@ -191,33 +191,33 @@ export function OfferingsSection() {
           </div>
 
           {/* Card 4: Design Reasoning */}
-          <div className="feature-card relative group p-8 md:p-12 rounded-[2.5rem] bg-secondary dark:bg-[#0A0A0A] border border-foreground/5 overflow-hidden min-h-[500px] flex flex-col justify-between">
-            <div className="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity duration-700">
+          <div className="feature-card relative group p-8 md:p-12 rounded-[2.5rem] bg-[#FF6B35] dark:bg-[#FF6B35] border border-foreground/5 overflow-hidden min-h-[500px] flex flex-col justify-between text-white">
+            <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700">
               <img
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
                 alt="Work"
                 className="w-full h-full object-cover grayscale"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-background dark:from-black via-background/40 dark:via-black/40 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#FF6B35] via-[#FF6B35]/60 to-transparent"></div>
 
             <div className="relative z-10 flex flex-col items-start gap-4 mb-12">
-              <div className="chat-bubble glass-panel px-4 py-2 rounded-2xl rounded-bl-none text-[10px] font-bold tracking-wider opacity-0 translate-y-4 text-foreground">
+              <div className="chat-bubble glass-panel px-4 py-2 rounded-2xl rounded-bl-none text-[10px] font-bold tracking-wider opacity-0 translate-y-4 text-white bg-white/20">
                 Why is this better?
               </div>
-              <div className="chat-bubble bg-blue-600 text-white px-4 py-2 rounded-2xl rounded-br-none self-end text-[10px] font-bold tracking-wider opacity-0 translate-y-4">
+              <div className="chat-bubble bg-white/30 text-white px-4 py-2 rounded-2xl rounded-br-none self-end text-[10px] font-bold tracking-wider opacity-0 translate-y-4">
                 Clearer CTA
               </div>
-              <div className="chat-bubble bg-blue-800 text-white px-4 py-2 rounded-2xl rounded-br-none self-end text-[10px] font-bold tracking-wider opacity-0 translate-y-4">
+              <div className="chat-bubble bg-white/40 text-white px-4 py-2 rounded-2xl rounded-br-none self-end text-[10px] font-bold tracking-wider opacity-0 translate-y-4">
                 Simplified Message
               </div>
             </div>
 
             <div className="relative z-10">
-              <h4 className="text-3xl md:text-4xl font-bold tracking-tight leading-snug text-foreground">
-                Every Design Decision <span className="text-blue-500">Has a Reason.</span>
+              <h4 className="text-3xl md:text-4xl font-bold tracking-tight leading-snug text-white">
+                Every Design Decision <span className="text-white/90">Has a Reason.</span>
               </h4>
-              <p className="text-muted-foreground text-sm leading-relaxed mt-4 max-w-sm">
+              <p className="text-white/80 text-sm leading-relaxed mt-4 max-w-sm">
                 Every element is designed with purpose—not just aesthetics, but function and results.
               </p>
             </div>

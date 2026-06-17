@@ -58,13 +58,13 @@ export function ServicesSection() {
         {/* Stacking Cards Container */}
         <div className="relative flex flex-col gap-0 w-full" id="stack-container">
           {/* Card 01: Web Development */}
-          <div className="stack-card sticky top-[15vh] w-full min-h-[70vh] rounded-[3.5rem] bg-secondary dark:bg-[#080808] border border-foreground/5 p-8 md:p-20 flex flex-col justify-between overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.1)] dark:shadow-[0_-50px_100px_rgba(0,0,0,0.8)]">
-            <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+          <div className="stack-card sticky top-[15vh] w-full min-h-[70vh] rounded-[3.5rem] bg-[#FF6B35] dark:bg-[#FF6B35] border border-foreground/5 p-8 md:p-20 flex flex-col justify-between overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.1)] dark:shadow-[0_-50px_100px_rgba(0,0,0,0.8)] text-white">
+            <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-white/10 blur-[150px] rounded-full pointer-events-none"></div>
 
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-16">
                 <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-500">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white">
                     Service 01
                   </span>
                   <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-widest">
@@ -82,22 +82,22 @@ export function ServicesSection() {
                   </svg>
                 </div>
               </div>
-              <h5 className="text-5xl md:text-[7vw] font-bold tracking-tighter max-w-4xl leading-[0.9] text-foreground">
+              <h5 className="text-5xl md:text-[7vw] font-bold tracking-tighter max-w-4xl leading-[0.9] text-white">
                 Building <br />{" "}
-                <span className="serif-italic font-light text-muted-foreground">Modern</span>{" "}
+                <span className="serif-italic font-light text-white/80">Modern</span>{" "}
                 Websites.
               </h5>
             </div>
 
             <div className="relative z-10 flex flex-col md:flex-row justify-between items-end gap-12">
-              <p className="text-muted-foreground text-lg md:text-2xl max-w-xl leading-relaxed">
+              <p className="text-white/90 text-lg md:text-2xl max-w-xl leading-relaxed">
                 Fast, responsive, and scalable web applications built with the latest technologies.
               </p>
               <div className="flex flex-wrap gap-4">
-                <span className="px-6 py-3 bg-foreground/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground border border-foreground/5">
+                <span className="px-6 py-3 bg-white/10 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-white border border-white/20">
                   React / Next.js
                 </span>
-                <span className="px-6 py-3 bg-foreground/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground border border-foreground/5">
+                <span className="px-6 py-3 bg-white/10 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-white border border-white/20">
                   Full Stack
                 </span>
               </div>
@@ -149,16 +149,16 @@ export function ServicesSection() {
           </div>
 
           {/* Card 03: Custom Projects */}
-          <div className="stack-card sticky top-[15vh] w-full min-h-[70vh] rounded-[3.5rem] bg-secondary dark:bg-[#0A0A0A] border border-foreground/5 p-8 md:p-20 flex flex-col justify-between overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.1)] dark:shadow-[0_-50px_100px_rgba(0,0,0,0.8)] mt-20">
-            <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+          <div className="stack-card sticky top-[15vh] w-full min-h-[70vh] rounded-[3.5rem] bg-[#FF6B35] dark:bg-[#FF6B35] border border-foreground/5 p-8 md:p-20 flex flex-col justify-between overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.1)] dark:shadow-[0_-50px_100px_rgba(0,0,0,0.8)] mt-20 text-white">
+            <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-white/10 blur-[150px] rounded-full pointer-events-none"></div>
 
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-16">
                 <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-500">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white">
                     Service 03
                   </span>
-                  <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-widest">
+                  <h4 className="text-xs font-medium text-white uppercase tracking-widest">
                     Custom Projects
                   </h4>
                 </div>
@@ -173,9 +173,9 @@ export function ServicesSection() {
                   </svg>
                 </div>
               </div>
-              <h5 className="text-5xl md:text-[7vw] font-bold tracking-tighter max-w-4xl leading-[0.9] text-foreground">
+              <h5 className="text-5xl md:text-[7vw] font-bold tracking-tighter max-w-4xl leading-[0.9] text-white">
                 Tailored <br />{" "}
-                <span className="serif-italic font-light text-muted-foreground italic">
+                <span className="serif-italic font-light text-white/80 italic">
                   Solutions
                 </span>{" "}
                 for You.
@@ -183,14 +183,14 @@ export function ServicesSection() {
             </div>
 
             <div className="relative z-10 flex flex-col md:flex-row justify-between items-end gap-12">
-              <p className="text-muted-foreground text-lg md:text-2xl max-w-xl leading-relaxed">
+              <p className="text-white/90 text-lg md:text-2xl max-w-xl leading-relaxed">
                 Bespoke projects tailored to your specific needs and vision, from concept to launch.
               </p>
               <div className="flex flex-wrap gap-4">
-                <span className="px-6 py-3 bg-foreground/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground border border-foreground/5">
+                <span className="px-6 py-3 bg-white/10 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-white border border-white/20">
                   Web Apps
                 </span>
-                <span className="px-6 py-3 bg-foreground/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground border border-foreground/5">
+                <span className="px-6 py-3 bg-white/10 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-white border border-white/20">
                   Consulting
                 </span>
               </div>
