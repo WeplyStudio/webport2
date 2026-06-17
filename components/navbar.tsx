@@ -1,7 +1,5 @@
 "use client"
 
-import { ThemeToggle } from "@/components/theme-toggle"
-
 interface NavbarProps {
   onMenuToggle: () => void
   isMenuOpen: boolean
@@ -15,8 +13,6 @@ export function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
       </a>
 
       <div className="flex items-center gap-1">
-        <ThemeToggle />
-        
         <button
           onClick={onMenuToggle}
           className="group flex items-center gap-1 md:gap-2 focus:outline-none"

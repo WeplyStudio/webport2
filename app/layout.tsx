@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { ThemeProvider } from '@/components/theme-provider'
 import { CookieConsentDrawer } from '@/components/cookie-consent-drawer'
 import { JoyChat } from '@/components/joy-chat'
 import './globals.css'
@@ -20,7 +19,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#000000',
+  themeColor: '#FF6B35',
 }
 
 export default function RootLayout({
@@ -29,18 +28,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <CookieConsentDrawer />
-          <JoyChat />
-        </ThemeProvider>
+        {children}
+        <CookieConsentDrawer />
+        <JoyChat />
         {process.env.NODE_ENV === 'production' && <Analytics />}
         <script src="https://js.puter.com/v2/" async></script>
       </body>
