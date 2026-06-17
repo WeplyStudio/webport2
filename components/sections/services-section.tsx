@@ -1,41 +1,201 @@
-'use client'
+"use client"
+
+import { useEffect } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 export function ServicesSection() {
-  const services = [
-    {
-      title: 'Web Development',
-      description: 'Fast, responsive, and scalable web applications built with the latest technologies.'
-    },
-    {
-      title: 'UI / UX Design',
-      description: 'User-centered design that combines beautiful aesthetics with intuitive interactions.'
-    },
-    {
-      title: 'Custom Projects',
-      description: 'Bespoke projects tailored to your specific needs and vision, from concept to launch.'
-    }
-  ]
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
+    const cards = gsap.utils.toArray<HTMLElement>(".stack-card")
+
+    // Stacking Animation
+    cards.forEach((card, i) => {
+      if (i < cards.length - 1) {
+        const nextCard = cards[i + 1]
+
+        gsap.to(card, {
+          scale: 0.9,
+          y: -50,
+          scrollTrigger: {
+            trigger: nextCard,
+            start: "top 90%",
+            end: "top 20%",
+            scrub: true,
+          },
+        })
+      }
+    })
+
+    // Header reveal
+    gsap.from("#services-stack .reveal-on-scroll", {
+      scrollTrigger: {
+        trigger: "#services-stack",
+        start: "top 80%",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1.5,
+      ease: "expo.out",
+    })
+  }, [])
 
   return (
-    <section id="services-stack" className="py-24 px-8 md:px-24 bg-background">
-      <div className="max-w-5xl">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground mb-8">Expertise</p>
-        
-        <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight mb-20">
-          The Service Matrix.
-        </h2>
+    <section id="services-stack" className="relative bg-background pt-40 pb-24 overflow-visible">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-24">
+        {/* Header Section */}
+        <div className="mb-40 reveal-on-scroll">
+          <h3 className="text-[10px] uppercase tracking-[1em] text-neutral-600 mb-8">
+            04 — Expertise
+          </h3>
+          <h2 className="text-6xl md:text-[9vw] font-bold tracking-tighter leading-[0.85] text-foreground">
+            The <span className="serif-italic font-light text-muted-foreground italic">Service</span>{" "}
+            <br /> Matrix.
+          </h2>
+        </div>
 
-        <div className="space-y-12">
-          {services.map((service, index) => (
-            <div key={index} className="pb-12 border-b border-foreground/10 last:border-b-0 last:pb-0">
-              <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-4">
-                {service.title}
-              </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {service.description}
-              </p>
+        {/* Stacking Cards Container */}
+        <div className="relative flex flex-col gap-0 w-full" id="stack-container">
+          {/* Card 01: Web Development */}
+          <div className="stack-card sticky top-[15vh] w-full min-h-[70vh] rounded-[3.5rem] bg-secondary dark:bg-[#080808] border border-foreground/5 p-8 md:p-20 flex flex-col justify-between overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.1)] dark:shadow-[0_-50px_100px_rgba(0,0,0,0.8)]">
+            <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+
+            <div className="relative z-10">
+              <div className="flex justify-between items-start mb-16">
+                <div className="flex flex-col gap-2">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-500">
+                    Service 01
+                  </span>
+                  <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-widest">
+                    Web Development
+                  </h4>
+                </div>
+                <div className="w-14 h-14 rounded-full border border-foreground/10 flex items-center justify-center text-foreground backdrop-blur-xl">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1"
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <h5 className="text-5xl md:text-[7vw] font-bold tracking-tighter max-w-4xl leading-[0.9] text-foreground">
+                Building <br />{" "}
+                <span className="serif-italic font-light text-muted-foreground">Modern</span>{" "}
+                Websites.
+              </h5>
             </div>
-          ))}
+
+            <div className="relative z-10 flex flex-col md:flex-row justify-between items-end gap-12">
+              <p className="text-muted-foreground text-lg md:text-2xl max-w-xl leading-relaxed">
+                Fast, responsive, and scalable web applications built with the latest technologies.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <span className="px-6 py-3 bg-foreground/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground border border-foreground/5">
+                  React / Next.js
+                </span>
+                <span className="px-6 py-3 bg-foreground/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground border border-foreground/5">
+                  Full Stack
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 02: UI/UX Design */}
+          <div className="stack-card sticky top-[15vh] w-full min-h-[70vh] rounded-[3.5rem] bg-background dark:bg-white text-foreground dark:text-black p-8 md:p-20 flex flex-col justify-between overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.1)] dark:shadow-[0_-50px_100px_rgba(0,0,0,0.3)] mt-20 border border-foreground/5 dark:border-none">
+            <div className="relative z-10">
+              <div className="flex justify-between items-start mb-16">
+                <div className="flex flex-col gap-2">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-muted-foreground dark:text-neutral-400">
+                    Service 02
+                  </span>
+                  <h4 className="text-xs font-medium text-muted-foreground dark:text-neutral-400 uppercase tracking-widest">
+                    UI / UX Design
+                  </h4>
+                </div>
+                <div className="w-14 h-14 rounded-full border border-foreground/10 flex items-center justify-center">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1"
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <h5 className="text-5xl md:text-[7vw] font-bold tracking-tighter max-w-4xl leading-[0.9]">
+                Design that <br />{" "}
+                <span className="serif-italic font-light italic text-blue-600">Works.</span>
+              </h5>
+            </div>
+
+            <div className="relative z-10 flex flex-col md:flex-row justify-between items-end gap-12">
+              <p className="text-muted-foreground text-lg md:text-2xl max-w-xl leading-relaxed">
+                User-centered design that combines beautiful aesthetics with intuitive interactions.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <span className="px-6 py-3 bg-foreground/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-foreground border border-foreground/5">
+                  UI Systems
+                </span>
+                <span className="px-6 py-3 bg-foreground/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-foreground border border-foreground/5">
+                  UX Research
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 03: Custom Projects */}
+          <div className="stack-card sticky top-[15vh] w-full min-h-[70vh] rounded-[3.5rem] bg-secondary dark:bg-[#0A0A0A] border border-foreground/5 p-8 md:p-20 flex flex-col justify-between overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.1)] dark:shadow-[0_-50px_100px_rgba(0,0,0,0.8)] mt-20">
+            <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+
+            <div className="relative z-10">
+              <div className="flex justify-between items-start mb-16">
+                <div className="flex flex-col gap-2">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-500">
+                    Service 03
+                  </span>
+                  <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-widest">
+                    Custom Projects
+                  </h4>
+                </div>
+                <div className="w-14 h-14 rounded-full border border-foreground/10 flex items-center justify-center text-foreground backdrop-blur-xl">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1"
+                      d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <h5 className="text-5xl md:text-[7vw] font-bold tracking-tighter max-w-4xl leading-[0.9] text-foreground">
+                Tailored <br />{" "}
+                <span className="serif-italic font-light text-muted-foreground italic">
+                  Solutions
+                </span>{" "}
+                for You.
+              </h5>
+            </div>
+
+            <div className="relative z-10 flex flex-col md:flex-row justify-between items-end gap-12">
+              <p className="text-muted-foreground text-lg md:text-2xl max-w-xl leading-relaxed">
+                Bespoke projects tailored to your specific needs and vision, from concept to launch.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <span className="px-6 py-3 bg-foreground/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground border border-foreground/5">
+                  Web Apps
+                </span>
+                <span className="px-6 py-3 bg-foreground/5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground border border-foreground/5">
+                  Consulting
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
