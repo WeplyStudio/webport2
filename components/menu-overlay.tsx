@@ -49,7 +49,6 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
             { href: "#about", label: "About", sub: "Philosophy" },
             { href: "#offerings", label: "Offerings", sub: "Value Proposition" },
             { href: "#services-stack", label: "Services", sub: "Expertise" },
-            { href: "/qupid", label: "Qupid", sub: "Our Platform" },
             { href: "#process", label: "Process", sub: "The Blueprint" },
             { href: "#faq", label: "FAQ", sub: "Questions" },
             { href: "#contact", label: "Contact", sub: "Start a Conversation" },
