@@ -1,54 +1,53 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-@custom-variant dark (&:is(.dark *));
+@theme {
+  --color-background: #F5F1E8;
+  --color-foreground: #000000;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #000000;
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #000000;
+  --color-primary: #000000;
+  --color-primary-foreground: #F5F1E8;
+  --color-secondary: #EEEBE3;
+  --color-secondary-foreground: #000000;
+  --color-muted: #EEEBE3;
+  --color-muted-foreground: #999999;
+  --color-accent: #FF6B35;
+  --color-accent-foreground: #FFFFFF;
+  --color-destructive: #EF4444;
+  --color-destructive-foreground: #FFFFFF;
+  --color-border: #E5E1D8;
+  --color-input: #EEEBE3;
+  --color-ring: #000000;
+  --color-chart-1: #FF6B35;
+  --color-chart-2: #000000;
+  --color-chart-3: #F5F1E8;
+  --color-chart-4: #EEEBE3;
+  --color-chart-5: #999999;
+  --color-sidebar: #FFFFFF;
+  --color-sidebar-foreground: #000000;
+  --color-sidebar-primary: #000000;
+  --color-sidebar-primary-foreground: #F5F1E8;
+  --color-sidebar-accent: #FF6B35;
+  --color-sidebar-accent-foreground: #FFFFFF;
+  --color-sidebar-border: #E5E1D8;
+  --color-sidebar-ring: #000000;
+  --radius-base: 0.625rem;
+}
 
 :root {
   --bg: #F5F1E8;
   --text: #000000;
   --accent: #FF6B35;
   --muted: #999999;
-  
-  --background: #F5F1E8;
-  --foreground: #000000;
-  --card: #FFFFFF;
-  --card-foreground: #000000;
-  --popover: #FFFFFF;
-  --popover-foreground: #000000;
-  --primary: #000000;
-  --primary-foreground: #F5F1E8;
-  --secondary: #EEEBE3;
-  --secondary-foreground: #000000;
-  --muted: #EEEBE3;
-  --muted-foreground: #999999;
-  --accent: #FF6B35;
-  --accent-foreground: #FFFFFF;
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
-  --border: #E5E1D8;
-  --input: #EEEBE3;
-  --ring: #000000;
-  --chart-1: #FF6B35;
-  --chart-2: #000000;
-  --chart-3: #F5F1E8;
-  --chart-4: #EEEBE3;
-  --chart-5: #999999;
-  --radius: 0.625rem;
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #000000;
-  --sidebar-primary: #000000;
-  --sidebar-primary-foreground: #F5F1E8;
-  --sidebar-accent: #FF6B35;
-  --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #E5E1D8;
-  --sidebar-ring: #000000;
 }
 
 /* Light theme only - remove dark mode */
 @layer base {
   * {
-    border-color: hsl(var(--border));
-    outline-color: hsl(var(--ring) / 0.5);
+    border-color: hsl(var(--color-border));
   }
   body {
     @apply bg-background text-foreground overflow-x-hidden;
